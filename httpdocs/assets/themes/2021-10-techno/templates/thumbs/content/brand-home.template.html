@@ -1,0 +1,9 @@
+<div class="item">
+	[%set [@brand_logo@] %][%ASSET_URL type:'content' id:'[@content_id@]'/%][%/set%]
+	[%if [@brand_logo@]%]
+		<a title="[@content_name@]" href="[@URL@]"><img src="[@brand_logo@]"></a>
+	[%else%]
+		<a class="brand-text" title="[@content_name@]" href="[@URL@]">[@content_name@]</a>
+	[%/if%]
+	<!-- <a href="[@URL@]"><img class="img-responsive" src="[%ASSET_URL type:'content' id:'[@content_id@]'" alt="[@content_name@]"/></a> -->
+</div>

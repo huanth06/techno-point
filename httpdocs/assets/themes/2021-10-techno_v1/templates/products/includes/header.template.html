@@ -1,0 +1,96 @@
+<div  class="row product-header">
+[%if ![@has_child@] || [@has_variation@]%]
+	[%if [@inpromo@]%]
+		<div class="col-xs-12">
+			<div class="productsavetext">
+				<i class="fa fa-tag"></i> Promotion ends in <span id="sale-end" class="time"></span>
+			</div>
+		</div>
+	[%/if%]
+[%/if%]
+	<div class="wrapper-product-title col-xs-12">
+		<h1 class="product-name" itemprop="name">[@name@]</h1>
+			<!--Reviews-->
+	<div class="ruk_rating_snippet" data-sku="[%DISPLAY_CHILD_PRODUCTS id:'[@SKU@]' sortby:'sortorder,name'%][%PARAM ifempty%][@SKU@][%/ PARAM%][%PARAM *body%][@SKU@];[%/ PARAM%][%/ DISPLAY_CHILD_PRODUCTS%]"></div>
+
+	<!--/reviews-->
+	</div>
+
+	[%if ![@has_child@] || [@has_variation@]%]
+		<div itemprop="offers" itemscope itemtype="http://schema.org/Offer" class="wrapper-pricing col-xs-12">
+			<meta itemprop="priceCurrency" content="[@config:defaultcurrency@]">
+			<div class="wrap-price-stock">
+				<div class="product-price">
+					[%if ![@inpromo@]%]
+						<div class="productprice productpricetext" itemprop="price">
+							[%FORMAT type:'currency'%][@store_price@][%/FORMAT%]
+						</div>
+						[%if [@save@] > 0%]
+							<div class="productrrp text-muted">
+								RRP [%FORMAT type:'currency'%][@retail@][%/FORMAT%]
+								[%if [@save@] > 0%]
+								<span class="badge badge-warning badge-save" aria-label="Save Price">
+									save [%format type:'percent'%][@save@][%/format%]
+								</span>
+								[%/if%]
+							</div>
+						[%/if%]
+					[%else%]
+						<div class="productprice productpricetext">
+							[%FORMAT type:'currency'%][@promo_price@][%/FORMAT%]
+						</div>
+						<div class="productrrp text-muted">
+							WAS [%FORMAT type:'currency'%][@store_price@][%/FORMAT%]
+							[%if [@save@] > 0%]
+							<span class="badge badge-warning badge-save" aria-label="Save Price">
+								save [%format type:'percent'%][@save@][%/format%]!
+							</span>
+							[%/if%]
+						</div>
+					[%/if%]
+				</div>
+				[%tracking_code type:'BuyingOptions' /%]
+				[%if [@availability_description@]%]
+				<div class="availability_description">
+					[@availability_description@]
+				</div>
+				[%/if%]
+			</div>
+			[%if [@brand@]%]
+			[%brand id:'[@brand@]'%]
+				[%param *body%]
+				[%set [@brand_logo@] %][%ASSET_URL type:'content' id:'[@content_id@]'/%][%/set%]
+					[%if [@brand_logo@]%]
+						<a class="brand-logo" title="[@brand@]" href="[%url type:'brand' id:'[@brand@]'/%]"><img src="[@brand_image@]"></a>
+					[%else%]
+						<a class="brand-logo brand-title" title="[@brand@]" href="[%url type:'brand' id:'[@brand@]'/%]">[@brand@]</a>
+					[%/if%]
+				[%/param%]
+			[%/brand%]
+		[%/if%]
+		</div>
+	[%/if%]
+	<!-- [%if [@subtitle@]%]
+	<div class="col-xs-12 product-subtitle">
+		<h5>[@subtitle@]</h5>
+	</div>
+	[%/if%]
+	[%if [@short_description@]%]
+	<div class="col-xs-12 product-subtitle">
+		<p>[@short_description@]</p>
+	</div>
+	[%/if%] -->
+</div>
+<div class="stock-detail">
+	[%if [@store_quantity@] > 0 AND [@preorder@] %]
+	<span itemprop="availability" content="preorder" class="label label-warning">Pre-order - Released [%format type:'date'%][@arrival_date@][%/format%]</span>
+	[%elseif [@store_quantity@] > 0 AND [@store_quantity@] <= 3 AND ![@preorder@] %]
+	<span itemprop="availability" content="in_stock" class="label label-success">Only [@store_quantity@] Left!</span>
+	[%elseif [@store_quantity@] > 0 AND ![@preorder@] %]
+	<span itemprop="availability" content="in_stock" class="label label-success">In Stock</span>
+	[%elseif [@store_quantity@] < 1 AND [@config:ALLOW_NOSTOCK_CHECKOUT@] %]
+	<span itemprop="availability" content="out_of_stock" class="label label-danger">Sold Out -  Backorder Available</span>
+	[%else%]
+	<span itemprop="availability" content="out_of_stock" class="label label-danger">Sold Out</span>
+	[%/if%]
+</div>	

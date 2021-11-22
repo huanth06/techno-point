@@ -1,0 +1,105 @@
+
+<div class="col-xs-12">
+	[%breadcrumb%]
+		[%param *header%]
+			<ul class="breadcrumb">
+				<li>
+					<a href="[@config:home_url@]">Home</a>
+				</li>
+		[%/param%]
+		[%param *body%]
+			<li class="current">
+				<a href="[@url@]">[@name@]</a>
+			</li>
+		[%/param%]
+		[%param *footer%]
+			</ul>
+		[%/param%]
+	[%/breadcrumb%]
+	[%set [@page_type@]='category'/%]
+
+	[%set [@has_categorybanner@]%][%asset_url type:'content' id:'[@content_id@]' /%][%/set%]
+	[%if [@has_categorybanner@]%]
+	<div class="category-banner" style="background-image: url('[%asset_url type:'content' id:'[@content_id@]' /%]')"></div>
+	[%/if%]
+	<h1 class="page-header text-center">
+		[%url_info name:'page_heading' if:'eq' value:''%]
+			[%param if_true%]
+				[@content_name@]
+			[%/param%]
+			[%param if_false%]
+				[%url_info name:'page_heading'%][%end url_info%]
+			[%/param%]
+		[%end url_info%]
+		[%if [@keywords@] == ''%]
+			[%filter ID:'keywords' if:'ne' value:''%][%nohtml%][%filter ID:'keywords'%][%/filter%][%/nohtml%][%/filter%]
+		[%/if%]
+	</h1>
+	
+
+	[%if ![@form:pgnum@] OR [@form:pgnum@] eq '1'%]
+		[%advert type:'product' limit:'8' template:'' inherit:'n' ad_group:''%]
+			[%param *header%]
+				<div class="row">
+			[%/param%]
+			[%param footer%]
+				</div>
+			[%/param%]
+		[%/advert%]
+		[%if [@content_short_description1@] or [@content_short_description2@] or [@content_short_description3@] or [@content_description1@] or [@content_description2@] or [@content_description3@]%]
+			<div class="n-responsive-content">
+				[@content_short_description1@]
+				[@content_short_description2@]
+				[@content_short_description3@]
+			</div>
+			<div class="n-responsive-content">
+				[@content_description1@]
+				[@content_description2@]
+				[@content_description3@]
+			</div>
+		[%/if%]
+	[%/if%]
+
+	[%content_menu content_type:'category' sortby:'sortorder, name' show_empty:'0' category:'[@id@]' start_category:'[@id@]'%]
+    [%param header%]
+        <section class="row wrap-category-tiles" aria-label="Sub-Category Links">
+    [%/param%]
+    [%param *level_1%]
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3 ">
+                <a href="[@url@]">
+                    <p class="images-cat"><img src="[%asset_url type:'content' thumb:'alt_1' id:'[@content_id@]' default:'[@config:imageurl@]/na.gif'/%]" class="img-fluid"></p>
+                    <p><span>[@name@]</span></p>
+                </a>
+				[%if [@next_level@]%]
+				<ul>
+					[@next_level@]
+				</ul>
+				[%/if%]
+            </div>
+    [%/param%]
+	[%param *level_2%]
+	<li>
+		<a href="[@url@]">[@name@]</a>
+	</li>
+	[%/param%]
+    [%param footer%]
+        </section>
+    [%/param%]
+[%/content_menu%]
+</div>
+
+</div>
+[%config id:'phistory_limit' if:'ne' value:'0'%]
+	[%product_history limit:'6' template:'history'%]
+		[%param header%]
+		<div class="container section-previously">
+		<h3 class="subheading">Previously Seen</h3>
+		<div class="row">
+		[%/param%]
+		[%param footer%]
+		</div>
+		</div>
+		[%/param%]
+	[%/product_history%]
+[%/config%]
+

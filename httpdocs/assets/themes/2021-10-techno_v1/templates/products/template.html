@@ -1,0 +1,474 @@
+[%site_value id:'footer_javascript'%]
+	<script type="text/javascript" language="javascript">
+		$(document).ready(function() {
+			$.product_variationInit({
+				'loadtmplates': ['_buying_options', '_images','_header','_shipping_calc'],
+				'fns' : {
+					'onLoad' : function () {
+						$('.addtocart').button("loading");
+					},
+					'onReady' : function () {
+						$('.addtocart').button("reset");
+						$('.zoom').zoom();
+						$("#sale-end").countdown({
+							date: "[%format type:'date' format:'#K #d, #Y  #H:#I'%][@promo_end@][%/format%]"
+						});
+						setTimeout(function() {
+							$('.slick-main-img').slick({
+								slidesToShow: 1,
+								slidesToScroll: 1,
+								arrows: true,
+								infinite: true,
+								focusOnSelect: true,
+								asNavFor: '.slick-product-nav',
+								nextArrow: '<div class="slick-next"></div>',
+								prevArrow: '<div class="slick-prev"></div>'
+							});
+							$('.slick-product-nav').slick({
+								slidesToShow: 6,
+								slidesToScroll: 1,
+								asNavFor: '.slick-main-img',
+								dots: false,
+								arrows: true,
+								vertical: true,
+								nextArrow: '<div class="slick-next"><i class="fa fa-angle-up"></i></div>',
+								prevArrow: '<div class="slick-prev"><i class="fa fa-angle-down"></i></div>',
+								focusOnSelect: true
+							});
+					    $('.nCustom-slick-all').hide().css('visibility','visible').fadeIn('slow');
+					    }, 200);
+					},
+				}
+			});
+			[%if [@has_components@]%]
+				$.kit_variationInit({});
+			[%/if%]
+		});
+	</script>
+	<script type="text/javascript" src="//cdn.neto.com.au/assets/neto-cdn/jcountdown/1.4/jquery.jcountdown.min.js"></script>
+		<script type="text/javascript">
+		$(document).ready(function(){
+			$('.zoom').zoom();
+		});
+	</script>
+	<script type="text/javascript" src="//cdn.neto.com.au/assets/neto-cdn/zoom/1.4/jquery.zoom-min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("#sale-end").countdown({
+				date: "[%format type:'date' format:'#K #d, #Y  #H:#I'%][@promo_end@][%/format%]"
+			});
+		});
+	</script>
+	<!--Slick-->
+	<script>
+	$('.slick-main-img').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: true,
+        infinite: true,
+        focusOnSelect: true,
+        asNavFor: '.slick-product-nav',
+        nextArrow: '<div class="slick-next"></div>',
+        prevArrow: '<div class="slick-prev"></div>'
+    });
+    $('.slick-product-nav').slick({
+        slidesToShow: 6,
+        slidesToScroll: 1,
+        asNavFor: '.slick-main-img',
+        dots: false,
+        arrows: true,
+        vertical: true,
+        nextArrow: '<div class="slick-next"><i class="fa fa-angle-up"></i></div>',
+        prevArrow: '<div class="slick-prev"><i class="fa fa-angle-down"></i></div>',
+        focusOnSelect: true
+    });
+	</script>
+[%/site_value%]
+[%cache type:'display' id:'[@inventory_id@]'%]
+[%set [@site_menu@] %][%content_zone id:'site_menu'/%][%/set%]
+<div class="col-xs-12">
+	[%breadcrumb%]
+		[%param *header%]
+			<ul class="product-breadcrumb breadcrumb [%if [@site_menu@] eq 'minify'%]breadcrumb-borders[%/if%]" itemscope itemtype="http://schema.org/BreadcrumbList">
+				<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+					<a href="[@config:home_url@]" itemprop="item"><span itemprop="name">Home</span></a>
+				</li>
+		[%/param%]
+		[%param *body%]
+			<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+				<a href="[@url@]" itemprop="item"><span itemprop="name">[@name@]</span></a>
+			</li>
+		[%/param%]
+		[%param *footer%]
+			</ul>
+		[%/param%]
+	[%/breadcrumb%]
+	<div class="row">
+		<div class="col-xs-12 col-sm-7">
+			<div class="row product-images">
+				[%load_ajax_template id:'_images' type:'item' template:'images' preload:'1' tmpl_sku:'[@current_sku@]' tmpl_preview:'y'/%]
+			</div>
+			<h3 class="social-pane">
+				<div class="social-media-share">
+					<ul>
+						<li role="presentation"><a class="js-social-share" role="menuitem" tabindex="-1" href="//www.facebook.com/sharer/sharer.php?u=[%url_encode%][@url@][%/url_encode%]"><i class="fa fa-facebook-square text-facebook"></i></a></li>
+						<li role="presentation"><a class="js-social-share" role="menuitem" tabindex="-1" href="//twitter.com/intent/tweet/?text=[%url_encode%][@name@][%/url_encode%]&amp;url=[%url_encode%][@url@][%/url_encode%]"><i class="fa fa-twitter-square text-twitter"></i></a></li>
+						<li role="presentation"><a class="js-social-share" role="menuitem" tabindex="-1" href="//www.pinterest.com/pin/create/button/?url=[%url_encode%][@url@][%/url_encode%]&amp;media=[%url_encode%][@config:homeurl@][%asset_url type:'product' id:'[@SKU@]' thumb:'full' check_parent:'y'/%][%/url_encode%]&amp;description=[%url_encode%][@name@][%/url_encode%]"><i class="fa fa-pinterest-square text-pinterest"></i></a></li>
+						<li role="presentation"><a class="js-social-share" role="menuitem" tabindex="-1" href="//plus.google.com/share?url=[%url_encode%][@url@][%/url_encode%]"><i class="fa fa-google-plus-square text-google-plus"></i></a></li>
+						<li role="presentation"><a class="js-social-share" role="menuitem" tabindex="-1" href="mailto:?subject=[%url_encode%]Take a look at [@model@][%/url_encode%]&body=[%url_encode%]I thought you'd like this product ([@model@]) on [@config:website_bname@][%/url_encode%]"><i class="fa fa-envelope-square text-email"></i></a></li>
+					</ul>
+				</div>
+			</h3>
+			[%if [@config:show_shipping_calc@]%]
+			<div class="tab-pane" id="shipcalc">
+				<div class="panel panel-default" id="shipbox">
+					<div class="panel-body">
+						<h3 class="panel-title">POSTAGE</h3>
+						[%load_ajax_template id:'_shipping_calc' type:'item' template:'shipping_calc' preload:'1' tmpl_sku:'[@current_sku@]' tmpl_preview:'y'/%]
+					</div>
+				</div>
+			</div>
+			[%/if%]
+			<div class="wrap-border-description">
+				<div class="description" itemprop="description">
+					<div class="title">Description</div>
+					[@description@]
+				</div>
+			</div>
+			<div class="wrap-border-description">
+				<div class="title">Specifications</div>
+				[%if [@specifications@]%]
+					<div class="n-responsive-content">
+						[@specifications@]
+					</div>
+				[%/if%]
+				<table class="table">
+					<tbody>
+						<tr>
+							<td><strong>SKU</strong></td>
+							<td>[@SKU@]</td>
+						</tr>
+						[%if [@manufacturer_model@]%]
+						<tr>
+							<td><strong>Model #</strong></td>
+							<td>[@manufacturer_model@]</td>
+						</tr>
+						[%/if%]
+						[%if [@barcode@]%]
+						<tr>
+							<td><strong>Barcode #</strong></td>
+							<td>[@barcode@]</td>
+						</tr>
+						[%/if%]
+						[%if [@brand@]%]
+						<tr>
+							<td><strong>Brand</strong></td>
+							<td>[@brand@]</td>
+						</tr>
+						[%/if%]
+						[%if [@artist_author@]%]
+						<tr>
+							<td><strong>Artist/Author</strong></td>
+							<td>[@artist_author@]</td>
+						</tr>
+						[%/if%]
+						[%if [@weight@] > '0'%]
+						<tr>
+							<td><strong>Shipping weight</strong></td>
+							<td>[@weight@]kg</td>
+						</tr>
+						[%/if%]
+						[%if [@width@] > '0'%]
+						<tr>
+							<td><strong>Shipping width</strong></td>
+							<td>[@width@]m</td>
+						</tr>
+						[%/if%]
+						[%if [@height@] > '0'%]
+						<tr>
+							<td><strong>Shipping height</strong></td>
+							<td>[@height@]m</td>
+						</tr>
+						[%/if%]
+						[%if [@length@] > '0'%]
+						<tr>
+							<td><strong>Shipping length</strong></td>
+							<td>[@length@]m</td>
+						</tr>
+						[%/if%]
+						[%if [@cubic@] > '0'%]
+						<tr>
+							<td><strong>Shipping cubic</strong></td>
+							<td>[@cubic@]m3</td>
+						</tr>
+						[%/if%]
+						[%if [@unit@]%]
+						<tr>
+							<td><strong>Unit of measure</strong></td>
+							<td>[@unit@]</td>
+						</tr>
+						[%/if%]
+						[%if [@actual_length@] > '0'%]
+						<tr>
+							<td><strong>Assembled length</strong></td>
+							<td>[@actual_length@]m</td>
+						</tr>
+						[%/if%]
+						[%if [@actual_height@] > '0'%]
+						<tr>
+							<td><strong>Assembled height</strong></td>
+							<td>[@actual_height@]m</td>
+						</tr>
+						[%/if%]
+						[%if [@actual_width@] > '0'%]
+						<tr>
+							<td><strong>Assembled width</strong></td>
+							<td>[@actual_width@]m</td>
+						</tr>
+						[%/if%]
+						[%if [@product_type@]%]
+						<tr>
+							<td><strong>Type</strong></td>
+							<td>[@product_type@]</td>
+						</tr>
+						[%/if%]
+						[%if [@format@]%]
+						<tr>
+							<td><strong>Format</strong></td>
+							<td>[@format@]</td>
+						</tr>
+						[%/if%]
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="col-xs-12 col-sm-5" style="position: sticky;top: 10px">
+			<div class="after-border-detail"></div>
+			<div class="wrap-border-detail">
+				[%load_ajax_template id:'_header' type:'item' template:'header' preload:'1' tmpl_sku:'[@current_sku@]' tmpl_preview:'y'/%]
+				[%list_item_variations id:'[@current_sku@]'%]
+					[%param header%]
+					<form class="product-variations">
+					<input type="hidden" id="_itmspec_sku" value="[%nohtml%][@SKU@][%/nohtml%]">
+					<div class="row">
+					[%/param%]
+					[%param *variation_header%]
+						<div class="_itmspec_listopt variations col-xs-12 [%if [@specific_name@] like 'colour' %] [%elseif [@specific_name@] like 'size' %]col-sm-6 col-md-12[%else%]col-sm-6 col-md-12[%/if%]" ref="[@specific_id@]">
+							<div class="variation-name">
+								<strong>[@specific_name@]</strong>
+							</div>
+							<div class="specific [@specific_name@]">
+								<input type="hidden" class="_itmspec_val" ref="[@specific_id@]" value="[@selected_id@]">
+					[%/param%]
+				[%param *variation_body%]
+					<a class="_itmspec_lnk [%if [@selected@]%]_itmspec_selected [%/if%] thumbnail nColourSwatch [%if [@specific_name@] like 'size' %]size-thumb[%/if%]" href="javascript:void(0);" ref="[@specific_id@]_[@value_id@]">
+						<div class="_itmspec_listitm" ref="[@specific_id@]_[@value_id@]" >
+							[%if [@specific_name@] like 'colour' %]
+								[%if [@value_image@]%]
+								<img class="nSwatchProduct" src="[@value_image@]" alt="[@value_name@]" />
+								[%else%]
+								<div class="nSwatchProduct" style="background-color:[@value_swatch@];"></div>
+								[%/if%]
+							[%else%]
+								[@value_name@]
+							[%/if%]
+						</div>
+					</a>
+				[%/param%]
+				[%param *variation_body_radio%]
+						<label class="_itmspec_listitm btn btn-default" ref="[@specific_id@]_[@value_id@]">
+							<input class="_itmspec_radio" type="radio" name="_itmspec_radio[@specific_id@]" value="[@value_id@]" ref="[@specific_id@]_[@value_id@]" [%if [@selected@]%]checked[%/if%]> [@value_name@]
+						</label>
+				[%/param%]
+				[%param *variation_body%]
+									<span class="size-block _itmspec_listitm" ref="[@specific_id@]_[@value_id@]">
+										<a class="_itmspec_lnk [%if [@selected@]%]_itmspec_selected[%/if%]" href="javascript:void(0);" ref="[@specific_id@]_[@value_id@]">
+											[%if [@value_image@]%]
+													<img src="[@value_image@]" alt="[@value_name@]">
+												[%else%]
+													[@value_name@]
+											[%/if%]
+										</a>
+									</span>
+				[%/param%]
+				[%param *variation_footer%]
+									<div class="clear"></div>
+								</div>
+							</div>
+				[%/param%]
+				[%param *variation_header_select%]
+							<div class="_itmspec_listopt col-xs-12 [%if [@specific_name@] like 'colour' %] [%elseif [@specific_name@] like 'size' %]col-sm-6 col-md-12[%else%]col-sm-6[%/if%]" ref="[@specific_id@]">
+								<div class="variation-name">
+									<strong>[@specific_name@]</strong>
+								</div>
+									<div class="specific [@specific_name@]">
+										<input type="hidden" class="_itmspec_val" ref="[@specific_id@]" value="[@selected_id@]">
+										<div class="n-wrapper-form-control">
+											<span class="_itmspec_optpl" ref="[@specific_id@]">
+												<select class="_itmspec_opt form-control" ref="[@specific_id@]">
+					[%/param%]
+					[%param *variation_body_select%]
+													<option value="[@value_id@]" [%if [@selected@]%]selected[%/if%]>[@value_name@]</option>
+					[%/param%]
+					[%param *variation_footer_select%]
+												</select>
+											</span>
+										</div>
+									</div>
+							</div>
+					[%/param%]
+					[%param footer%]
+						</div>
+						<hr>
+					</form>
+					[%/param%]
+				[%/list_item_variations%]
+
+				[%if ![@has_variation@]%]
+				[%load_template file:"products/includes/child_products.template.html"/%]
+				[%/if%]
+
+				[%if [@has_variation@] || ![@has_child@] AND ![@has_components@]%]
+					[%load_ajax_template id:'_buying_options' type:'item' template:'buying_options' preload:'1' tmpl_sku:'[@current_sku@]' tmpl_preview:'y'/%]
+				[%/if%]
+				[%content_zone id:'product_usps'/%]
+				
+				[%if [@has_components@]%]
+				<h2>Customise Your Purchase</h2>
+				[%load_template file:"products/includes/components.template.html"/%]
+				[%/if%]
+
+				<div class="product-detail-infomation">
+					<h3>Product Information</h3>
+					<div class="d-flex">
+						<div class="item">
+							<p>SKU: </p>
+							<p>[@SKU@]</p>
+						</div>
+						[%if [@brand@]%]
+						<div class="item">
+							<p>Brand: </p>
+							<p>[@brand@]</p>
+						</div>
+						[%/if%]
+						[%if [@barcode@]%]
+						<div class="item">
+							<p>Barcode #: </p>
+							<p>[@barcode@]</p>
+						</div>
+						[%/if%]
+						[%if [@weight@] > '0'%]
+						<div class="item">
+							<p>Shipping Weigth: </p>
+							<p>[@weight@]kg</p>
+						</div>
+						[%/if%]
+						[%if [@warranty@]%]
+						<div class="item">
+							<p>Warranty: </p>
+							<p>[@warranty@]</p>
+						</div>
+						[%/if%]
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div><!--/.col-xs-12-->
+</div><!--/.row-->
+</div><!--/.container-->
+<div class="bg-gray-detail">
+	<div class="container">
+		[%tracking_code type:'ProductDescription' /%]
+		<!-- [%upsell_products id:'[@SKU@]' limit:'4' template:'home' show_all:'1'%]
+			[%param header%]
+			<h3 class="subheading">We also recommend</h3>
+			<br />
+			<div class="row">
+			[%/param%]
+			[%param footer%]
+			</div>
+			[%/param%]
+		[%/upsell_products%]
+		[%crosssell id:'[@SKU@]' limit:'4' template:'home' show_all:'1'%]
+			[%param header%]
+			<h3 class="subheading">You may also like</h3>
+			<br />
+			<div class="row">
+			[%/param%]
+			[%param footer%]
+			</div>
+			[%/param%]
+		[%/crosssell%] -->
+		[%related_products id:'[@SKU@]' limit:'4' template:'home' show_all:'1'%]
+			[%param header%]
+			<div class="title-page">
+				<h2>Others also bought</h2>
+			</div>
+			<div class="owl-carousel space-30" data-lg-items="6" data-md-items="6" data-sm-items="3" data-xs-items="2" data-xss-items="2" data-dot="true" data-nav="true">
+			[%/param%]
+			[%param footer%]
+			</div>
+			[%/param%]
+		[%/related_products%]
+		[%thumb_list type:'products' filter_category:'[@content_id@]' template:'home' filter_exsku1:'[@sku@]' limit:'4'%]
+			[%param *header%]
+			<div class="title-page">
+				<h2>More from this category</h2>
+			</div>
+			<div class="owl-carousel space-30" data-lg-items="6" data-md-items="6" data-sm-items="3" data-xs-items="2" data-xss-items="2" data-dot="true" data-nav="true">
+			[%/param%][%param footer%]
+			</div>
+			[%/param%]
+		[%/thumb_list%]
+		[%/CACHE%]
+	</div><!--/.col-xs-12-->
+</div><!--/.row-->
+[%if [@config:phistory_limit@]%]
+	[%product_history limit:'4' template:'history'%]
+		[%param header%]
+		<div class="section-previously">
+		<div class="container">
+		<div class="title-page">
+			<h2>Previously Seen</h2>
+		</div>
+		<div class="row">
+		[%/param%]
+		[%param footer%]
+		</div>
+		</div>	
+		[%/param%]
+	[%/product_history%]
+[%/if%]
+<div class="modal fade notifymodal" id="notifymodal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Notify me when back in stock</h4>
+			</div>
+			<div class="modal-body">
+				<div class="form-group">
+					<label>Name</label>
+					<input placeholder="Jane Smith" name="from_name" id="from_name" type="text" class="form-control" value="[%NOHTML%][@FROM_NAME@][%/NOHTML%]">
+				</div>
+				<div class="form-group">
+					<label>Email address</label>
+					<input placeholder="jane.smith@test.com.au" name="from" id="from" type="email" class="form-control" value="[%NOHTML%][@FROM@][%/NOHTML%]">
+				</div>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" value="y" class="terms_box" required/>
+						I have read and agree to
+						<a href="#" data-toggle="modal" data-target="#termsModal">Terms & Conditions</a> and
+						<a href="#" data-toggle="modal" data-target="#privacyModal">Privacy Policy</a>.
+					</label>
+					<span class="help-block hidden">Please tick this box to proceed.</span>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<input class="btn btn-danger" type="button" data-dismiss="modal" value="Cancel">
+				<input class="btn btn-success js-notifymodal-in-stock" data-sku="[@sku@]" type="button" value="Save My Details">
+			</div>
+		</div><!-- /.modal-content -->
+	</div>
+</div>

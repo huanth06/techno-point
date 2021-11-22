@@ -1,0 +1,45 @@
+[%cache type:'gallery' id:'[@inventory_id@]-history'%]
+<div class="wrapper-thumbnail col-xs-6 col-sm-4 col-md-3 history">
+	<div class="savings-container">
+		[%if [@inpromo@]%]
+			<span class="label label-default">Promo</span>
+		[%elseif [@save@] > 0%]
+			<span class="label label-default">Sale</span>
+		[%/if%]
+	</div>
+	[%if [@store_quantity@] > 0 AND [@preorder@] %]
+		<div class="savings-container">
+			<span class="label label-danger">Pre-order</span>
+		</div>
+	[%elseif [@store_quantity@] < 1 AND [@config:ALLOW_NOSTOCK_CHECKOUT@] %]
+		<div class="savings-container">
+			<span class="label label-danger">Backorder</span>
+		</div>
+	[%elseif [@store_quantity@] < 1 %]
+		<div class="savings-container">
+			<span class="label label-danger">Sold out</span>
+		</div>
+	[%/if%]
+	<div class="thumbnail">
+		<a href="[@URL@]" class="thumbnail-image">
+			<img src="[%asset_url type:'product' thumb:'thumb' id:'[@SKU@]'%][%param default%][%cdn_asset html:'0' library:'images'%]default_product.gif[%/cdn_asset%][%end param%][%/asset_url%]" class="product-image" alt="[@model@]" rel="itmimg[@SKU@]">
+		</a>
+		<div class="caption">
+			<h3 itemprop="name"><a href="[@URL@]" title="[@model@]">[%format type:'text' maxlength:'50' rmhtml:'1'%][@model@][%/format%]</a></h3>
+			<p class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+				[%if [@inpromo@]%]
+					<span itemprop="price" class="original-rrp"><small>[%format type:'currency'%][@retail@][%/format%]</small></span>
+					<span itemprop="price" class="price-promo"><small>[%format type:'currency'%][@promo_price@][%/format%]</small></span>
+				[%elseif [@save@]%]
+					<span itemprop="price" class="original-rrp"><small>[%format type:'currency'%][@retail@][%/format%]</small></span>
+					<span itemprop="price" class="price-promo"><small>[%format type:'currency'%][@store_price@][%/format%]</small></span>
+				[%else%]
+					<span itemprop="price"><small>[%format type:'currency'%][@store_price@][%/format%]</small></span>
+				[%/if%]
+				<meta itemprop="priceCurrency" content="[@config:defaultcurrency@]">
+			</p>
+			[%tracking_code type:'Thumbnails' /%]
+		</div>
+	</div>
+</div>
+[%/cache%]

@@ -1,0 +1,99 @@
+[%cache type:'gallery' id:'[@inventory_id@]'%]
+<div class="wrapper-thumbnail col-xs-6 col-md-4 col-lg-3">
+	<div class="thumbnail" itemscope itemtype="http://schema.org/Product">
+		<a href="[@URL@]" class="thumbnail-image [%if [@thumb_1@] AND [@thumb_1@] ne '/assets/na.gif'%]with-altimg[%/if%]">
+			<div class="savings-container label-sale">
+				[%if [@inpromo@]%]
+					<span class="label label-default">Promo</span>
+				[%elseif [@save@] > 0%]
+					<span class="label label-default bg-red">Sale</span>
+				[%/if%]
+			</div>
+			[%if [@store_quantity@] > 0 AND [@preorder@] %]
+				<div class="savings-container">
+					<span class="label label-danger">Pre-order</span>
+				</div>
+			[%elseif [@store_quantity@] < 1 AND [@config:ALLOW_NOSTOCK_CHECKOUT@] %]
+				<div class="savings-container">
+					<span class="label label-danger">Backorder</span>
+				</div>
+			[%elseif [@store_quantity@] < 1 %]
+				<div class="savings-container">
+					<span class="label label-danger">Sold out</span>
+				</div>
+			[%/if%]
+			<img src="[%asset_url type:'product' thumb:'thumb' id:'[@SKU@]'%][%param default%][%cdn_asset html:'0' library:'images'%]default_product.gif[%/cdn_asset%][%end param%][%/asset_url%]" class="product-image" alt="[@model@]" rel="itmimg[@SKU@]">
+			[%if [@thumb_1@] AND [@thumb_1@] ne '/assets/na.gif'%]<img border="0" src="[@thumb_1@]" alt="[@model@]" rel="itmimg[@SKU@]" width="245" height="245" temprop="image" class="bottomimg"/>[%/if%]
+		</a>
+
+		<div class="colouropt-wrap">
+			[%if [@has_child@]%]
+				<div class="product-options colour-options">
+					[%list_item_variations id:'[@sku@]'%]
+						[%param *variation_body%]
+							[%if [@specific_name@] like 'Colour'%]
+								<a href="[@URL@]" data-variation-image="[%asset_url type:'product' thumb:'thumb' id:'[@variation_sku@]'/%]" class="thumbnailVariation">
+								[%if [@value_image@]%]
+									<img src="[@value_image@]" alt="[@value_name@]" />
+								[%else%]
+									<div style="background-color:[@value_swatch@];">&nbsp;</div>
+								[%/if%]
+								</a>
+							[%end if%]
+						[%/param%]
+					[%/list_item_variations%]
+				</div>
+			[%/if%]
+		</div>
+
+		<div class="caption">
+			<h3 itemprop="name"><a href="[@URL@]" title="[@model@]">[%format type:'text' maxlength:'100' rmhtml:'1'%][@model@][%/FORMAT%]</a></h3>
+			<p class="sku">SKU: [@SKU@]</p>
+			<div class="ruk_rating_snippet" data-sku="[%DISPLAY_CHILD_PRODUCTS id:'[@SKU@]' sortby:'sortorder,name'%][%PARAM ifempty%][@SKU@][%/ PARAM%][%PARAM *body%][@SKU@];[%/ PARAM%][%/ DISPLAY_CHILD_PRODUCTS%]"></div>
+
+			<div class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+				[%if [@inpromo@]%]
+				<div>
+					<span itemprop="price" class="price-promo"><small>[%format type:'currency'%][@promo_price@][%/format%]</small></span>
+				</div>
+				<div>
+					<span itemprop="price" class="original-rrp"><small>[%format type:'currency'%][@retail@][%/format%]</small></span>
+				</div>
+				[%elseif [@save@]%]
+				<div>
+					<span itemprop="price" class="price-promo"><small>[%format type:'currency'%][@store_price@][%/format%]</small></span>
+				</div>
+				<div>
+					<span itemprop="price" class="original-rrp"><small>[%format type:'currency'%][@retail@][%/format%]</small></span>
+				</div>
+				[%else%]
+					[%if [@has_child@]%]<small>From&nbsp;</small>[%/if%]
+					<span itemprop="price"><small>[%format type:'currency'%][@store_price@][%/format%]</small></span>
+				[%/if%]
+				<meta itemprop="priceCurrency" content="[@config:defaultcurrency@]">
+			</div>
+		</div>
+		<div class="bottom-action">
+			<a class="btn-infomation" href="[@URL@]">View more</a>
+			<!-- Purchase Logic -->
+			<form class="form-inline buying-options">
+				<input type="hidden" id="sku[@rndm@][@SKU@]" name="sku[@rndm@][@SKU@]" value="[@SKU@]">
+				<input type="hidden" id="model[@rndm@][@SKU@]" name="model[@rndm@][@SKU@]" value="[@model@]">
+				<input type="hidden" id="thumb[@rndm@][@SKU@]" name="thumb[@rndm@][@SKU@]" value="[@thumb@]">
+				<input type="hidden" id="qty[@rndm@][@SKU@]" name="qty[@rndm@][@SKU@]" value="[%if [@min_qty@] > 0%][@min_qty@][%else%]1[%/if%]" class="input-tiny">
+				[%if [@extra@] or [@has_child@] or [@editable_bundle@]%]
+					<a href="[@URL@]" title="View [@model@] Buying Options" class="btn btn-primary btn-options btn-block btn-loads" data-loading-text="<i class='fa fa-spinner fa-spin' style='font-size: 14px'></i>"><i class="fa fa-search"></i></a>
+				[%elseif [@store_quantity@] > 0 AND [@preorder@] %]
+					<button type="button" title="Pre-Order [@model@] Now!" class="addtocart btn btn-warning btn-block btn-loads" rel="[@rndm@][@SKU@]" data-loading-text="<i class='fa fa-spinner fa-spin' style='font-size: 14px'></i>">Pre Order <i class="fa  fa-clock-o"></i></button>
+				[%elseif [@store_quantity@] > 0 AND ![@preorder@] %]
+					<button type="button" title="Add [@model@] to Cart" class="addtocart btn-primary btn btn-block btn-loads" rel="[@rndm@][@SKU@]" data-loading-text="<i class='fa fa-spinner fa-spin' style='font-size: 14px'></i>">Add to Cart <span class="icon-cart"></span></button>
+				[%elseif [@store_quantity@] < 1 AND [@config:ALLOW_NOSTOCK_CHECKOUT@] %]
+					<button type="button" title="Add [@model@] to Cart" class="addtocart btn-warning btn btn-block btn-loads" rel="[@rndm@][@SKU@]" data-loading-text="<i class='fa fa-spinner fa-spin' style='font-size: 14px'></i>">Back order <i class="fa  fa-clock-o"></i></button>
+				[%else%]
+					<a class="notify_popup btn btn-outline-secondary btn-block btn-loads" href="[@url@]" title="Notify Me When [@model@] Is Back In Stock" data-loading-text="<i class='fa fa-spinner fa-spin' style='font-size: 14px'></i>">Notify me <i class="fa fa-envelope-o"></i></a>
+				[%/if%]
+			</form>
+		</div>
+	</div>
+</div>
+[%/cache%]

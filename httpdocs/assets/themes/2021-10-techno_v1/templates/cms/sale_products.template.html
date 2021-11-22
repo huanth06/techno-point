@@ -1,0 +1,117 @@
+<div class="col-xs-12">
+	[%SET [@page_type@]='sale_products'/%]
+
+	[%set [@has_categorybanner@]%][%asset_url type:'content' thumb:'alt_1' id:'[@content_id@]' /%][%/set%]
+	[%if [@has_categorybanner@]%]
+	<div class="category-banner" style="background-image: url('[%asset_url type:'content' thumb:'alt_1' id:'[@content_id@]' /%]')">
+		<div class="category-caption">
+			<h1 class="page-header category-headline text-center">
+				[%url_info name:'page_heading' if:'eq' value:''%]
+					[%param if_true%]
+						[@content_name@]
+					[%/param%]
+					[%param if_false%]
+						[%url_info name:'page_heading'%][%end url_info%]
+					[%/param%]
+				[%end url_info%]
+				[%if [@keywords@] == ''%]
+					[%filter ID:'keywords' if:'ne' value:''%][%nohtml%][%filter ID:'keywords'%][%/filter%][%/nohtml%][%/filter%]
+				[%/if%]
+			</h1>
+		</div>
+	</div>
+	[%else%]
+	<h1 class="page-header text-center">
+		[%url_info name:'page_heading' if:'eq' value:''%]
+			[%param if_true%]
+				[@content_name@]
+			[%/param%]
+			[%param if_false%]
+				[%url_info name:'page_heading'%][%end url_info%]
+			[%/param%]
+		[%end url_info%]
+		[%if [@keywords@] == ''%]
+			[%filter ID:'keywords' if:'ne' value:''%][%nohtml%][%filter ID:'keywords'%][%/filter%][%/nohtml%][%/filter%]
+		[%/if%]
+	</h1>
+	[%/if%]
+
+	[%if ![@form:pgnum@] OR [@form:pgnum@] eq '1'%]
+		[%advert type:'text' template:'carousel' inherit:'n' limit:'10' ad_group:''%]
+			[%param *header%]
+				<div id="homepageCarousel" class="carousel slide">
+					[%if [@total_showing@] > 1%]
+						<ol class="carousel-indicators">
+							[%site_value id:'counter' type:'load'/%]
+						</ol>
+					[%/if%]
+					<div class="carousel-inner">
+			[%/param%]
+			[%param *footer%]
+					</div>
+					[%if [@total_showing@] > 1%]
+						<a class="left carousel-control" href="#homepageCarousel" data-slide="prev">
+							<span class="fa fa-chevron-left"></span>
+						</a>
+						<a class="right carousel-control" href="#homepageCarousel" data-slide="next">
+							<span class="fa fa-chevron-right"></span>
+						</a>
+					[%/if%]
+				</div>
+				<hr>
+			[%/param%]
+			[%param *ifempty%]
+			[%/param%]
+		[%/advert%]
+		[%advert type:'product' limit:'8' template:'' inherit:'n' ad_group:''%]
+			[%param *header%]
+				<div class="row">
+			[%/param%]
+			[%param footer%]
+				</div>
+				<hr>
+			[%/param%]
+		[%/advert%]
+		[%if [@content_short_description1@] or [@content_short_description2@] or [@content_short_description3@] or [@content_description1@] or [@content_description2@] or [@content_description3@]%]
+			<div class="n-responsive-content">
+				[@content_short_description1@]
+				[@content_short_description2@]
+				[@content_short_description3@]
+			</div>
+			<div class="n-responsive-content">
+				[@content_description1@]
+				[@content_description2@]
+				[@content_description3@]
+			</div>
+			<hr>
+		[%/if%]
+	[%/if%]
+</div>
+<div class="col-xs-12 col-sm-12">
+[%thumb_list type:'products' filter_category:'0' filter_inpromo:'1' limit:'96' %]
+    [%param template%][%VIEWBY type:'products' default:'[@templatethumb@]'%][%/VIEWBY%][%/param%]
+    [%param *header%]
+        <div class="[%VIEWBY type:'products' if:'eq' value:'list' if_true:'thumb_list' if_false:'thumb'%][%/VIEWBY%]">
+            <section class="row products-row" aria-label="Products in category">
+    [%/param%]
+    [%param *footer%]
+            </section>
+        </div>
+    [%/param%]
+[%/thumb_list%]
+</div>
+<div class="col-xs-12">
+	[%config id:'phistory_limit' if:'ne' value:'0'%]
+		[%product_history limit:'6' template:'history'%]
+			[%param header%]
+			<hr class="subheading" />
+			<h3 class="subheading">Your browsing history</h3>
+			<br />
+			<div class="row">
+			[%/param%]
+			[%param footer%]
+			</div>
+			[%/param%]
+		[%/product_history%]
+	[%/config%]
+</div>

@@ -1,0 +1,156 @@
+</div>
+</div>
+<div class="back-to-top"></div>
+<div class="wrapper-footer">
+	<div class="container">
+		<div class="col-item col-1">
+			<a class="logo-footer" href="/" title="logo">
+				<img src="[%ntheme_asset%]img/logo-footer.png[%/ntheme_asset%]" alt="logo">
+			</a>
+			<address>
+				<ul class="address-book">
+					[%if [@CONFIG:COMPANY_ADDR@]%]
+						<li><p><span class="icon ic-address">
+							<img src="[%ntheme_asset%]img/ic-address.png[%/ntheme_asset%]" alt="address" width="15px"></span> [@CONFIG:COMPANY_ADDR@]</p></li>
+					[%/if%]
+					[%if [@CONFIG:COMPANY_POADDR@]%]
+						<li><p><span class="icon ic-address"><img src="[%ntheme_asset%]img/ic-address.png[%/ntheme_asset%]" width="15px" alt="address"></span> [@CONFIG:COMPANY_POADDR@]</p></li>
+					[%/if%]
+					[%if [@CONFIG:COMPANY_PHONE@]%]
+						<li><a href="tel:[@CONFIG:COMPANY_PHONE@]" target="_blank"><span class="icon ic-address"><img src="[%ntheme_asset%]img/ic-phone.png[%/ntheme_asset%]" alt="address" width="18px"></span> [@CONFIG:COMPANY_PHONE@]</a></li>
+					[%/if%]
+					[%if [@CONFIG:COMPANY_EMAIL@]%]
+						<li><a href="mailto:[@CONFIG:COMPANY_EMAIL@]" target="_blank"><span class="icon"><img src="[%ntheme_asset%]img/ic-email.png[%/ntheme_asset%]" alt="address" width="20px"></span> [@CONFIG:COMPANY_EMAIL@]</a></li>
+					[%/if%]
+				</ul>
+			</address>
+		</div>
+		[%menu id:'web_footer'%]
+			[%param *level_1%]
+			<div class="col-item">
+				<p class="subtitle">[@name@]</p>
+				<ul>
+					[@next_level@]
+				</ul>
+			</div>
+			[%/param%]
+			[%param *level_2%]
+			<li><a href="[@url@]">[@name@]</a></li>
+			[%/param%]
+		[%/menu%]
+		<div class="col-item col-5">
+			<p class="subtitle">Stay Up To Date</p>
+			<p>Subscribe to our newsletter and receive newest updates.</p>
+			[%if [@config:show_newsletter_subscribe@]%]
+			<form method="post" action="https://go.smartrmail.com/en/subscribe/akp95n" aria-label="Newsletter subscribe form">
+				<input id="subscriber_email" class="form-control" name="EMAIL" type="email" required placeholder="Your email..." />
+				<input name="subscribe_form[anti_bot]" type="text" style="display: none" />
+				<button class="btn btn-default" type="submit" value="Subscribe" data-loading-text="<i class='fa fa-spinner fa-spin' style='font-size: 14px'></i>"><i class="fa fa-envelope-o"></i></button>
+			</form>
+			[%/if%]
+		</div>
+	</div>
+</div>
+<div class="wrapper-foot">
+	<div class="container">
+		<div class="d-flex"">
+			<address>
+				Copyright &copy; [%format type:'date' format:'#Y'%]today[%/format%] [@config:company_name@]
+			</address>
+			<ul class="list-inline">
+				<li><img src="[%ntheme_asset%]img/paypal1.jpg[%/ntheme_asset%]" alt="paypal"></li>
+				<li><img src="[%ntheme_asset%]img/paypal2.jpg[%/ntheme_asset%]" alt="paypal"></li>
+				<li><img src="[%ntheme_asset%]img/paypal3.jpg[%/ntheme_asset%]" alt="paypal"></li>
+				<li><img src="[%ntheme_asset%]img/paypal4.jpg[%/ntheme_asset%]" alt="paypal"></li>
+				<li><img src="[%ntheme_asset%]img/paypal5.jpg[%/ntheme_asset%]" alt="paypal"></li>
+				<li><img src="[%ntheme_asset%]img/paypal6.jpg[%/ntheme_asset%]" alt="paypal"></li>
+			 </ul>
+			<!-- [%payment_methods ignore_balance:'1'%]
+				[%param header%]
+					<ul class="list-inline">
+				[%/param%]
+				[%param *body%]
+					[%if [@name@] like 'paypal'%]
+						<li><img src="[%ntheme_asset%]img/paypal1.jpg[%/ntheme_asset%]" alt="paypal"></li>
+					[%/if%]
+					[%if [@name@] like 'Visa'%]
+						<li><i class="fa fa-2x fa-cc-visa" title="Visa"></i></li>
+					[%/if%]
+					[%if [@name@] like 'MasterCard' OR [@name@] like 'Master Card'%]
+						<li><i class="fa fa-2x fa-cc-mastercard" title="MasterCard"></i></li>
+					[%/if%]
+					[%if [@name@] like 'American Express'%]
+						<li><i class="fa fa-2x fa-cc-amex" title="American Express"></i></li>
+					[%/if%]
+				[%/param%]
+				[%param *footer%]
+					</ul>
+				[%/param%]
+			[%/payment_methods%] -->
+		</div>
+	</div>
+</div>
+</div>
+<div class="modal fade" id="termsModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Terms & Conditions</h4>
+            </div>
+            <div class="modal-body">[%content_zone id:'terms'/%]</div>
+            <div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="privacyModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Privacy Policy</h4>
+            </div>
+            <div class="modal-body">[%show_content id:'2'%][%param *body%][@content_description1@][%/param%][%/show_content%]</div>
+            <div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div>
+        </div>
+    </div>
+</div>
+
+<script src="https://widget.reviews.io/product/dist.js"></script>
+<script src="https://widget.reviews.io/rating-snippet/dist.js"></script>
+<link rel="stylesheet" href="https://widget.reviews.io/rating-snippet/dist.css" />
+<script>
+    ratingSnippet("ruk_rating_snippet", {
+        store: "motherworld-direct-com-au",
+        color: "#33bead",
+        linebreak: true,
+        text: "Reviews"
+    });
+</script>
+<style>
+.ruk_rating_snippet > .ruk-rating-snippet-count {
+    font-family: inherit!important;
+}
+</style>
+
+
+<!-- Required Neto Scripts - DO NOT REMOVE -->
+[%cdn_asset html:'1' type:'js' library:'jquery' version:'1.11.3'%]jquery.min.js[%/cdn_asset%]
+[%cdn_asset html:'1' type:'js' library:'fancybox' version:'2.1.5'%]jquery.fancybox.pack.js[%/cdn_asset%]
+[%NETO_JS html:'1' id:'main' /%]
+[%cdn_asset html:'1' type:'js' library:'bootstrap' version:'3.3.6'%]bootstrap.min.js[%/cdn_asset%]
+<script type="text/javascript" src="[%ntheme_asset%]js/custom.js[%/ntheme_asset%]"></script>
+<script type="text/javascript" src="[%ntheme_asset%]js/owl.carousel.min.js[%/ntheme_asset%]"></script>
+<script type="text/javascript" src="[%ntheme_asset%]js/h_custom.js[%/ntheme_asset%]"></script>
+[%cdn_asset html:'1' type:'js' library:'jquery_ui' version:'1.11.1'%]js/jquery-ui-1.8.18.custom.min.js[%/cdn_asset%]
+<script type="text/javascript" src="[%ntheme_asset%]js/plugins/slick-1.5.9/slick/slick.min.js[%end ntheme_asset%]"/></script>
+[%SITE_VALUE id:'footer_javascript' type:'load'/%]
+<!-- Analytics -->
+[%tracking_code type:'Visitor' /%]
+<div class="npopup" style=""> <a href="javascript:void(0);" class="npopup-btn-close"></a>
+	<div class="npopup-body">
+	</div>
+</div>
+<div class="nactivity"><i class="fa fa-spinner fa-spin fa-inverse fa-3x fa-fw"></i></div>
+</body>
+</html>

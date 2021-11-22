@@ -1,0 +1,201 @@
+<div class="col-xs-12 wrap-page-default space-30">
+[%set [@site_menu@] %][%content_zone id:'site_menu'/%][%/set%]
+[%breadcrumb%]
+	[%param *header%]
+		<ul class="breadcrumb [%if [@site_menu@] eq 'minify'%]breadcrumb-borders[%/if%]">
+			<li><a href="[@config:home_url@]">Home</a></li>
+	[%/param%]
+	[%param *body%]
+		<li><a href="[@url@]">[@name@]</a></li>
+	[%/param%]
+	[%param *body_current%]
+		<li>[@name@]</li>
+	[%/param%]
+	[%param *footer%]
+		</ul>
+	[%/param%]
+[%/breadcrumb%]
+
+<h1 class="page-header">[@content_name@]</h1>
+<p class="text-muted">
+	[%if [@content_author@]%]
+	[@content_author@] &nbsp;
+	[%/if%]
+	[%if [@date_posted@] != 0000-00-00 00:00:00%]
+	>&nbsp;
+	[%format type:'date'%][@date_posted@][%/format%]
+	[%/if%]
+</p>
+<img src="[%asset_url type:'content' id:'[@content_id@]' default:'[@config:imageurl@]/pixel.gif'/%]" class="pull-right img-responsive"/>
+
+[%advert type:'text' template:'carousel' limit:'10' ad_group:''%]
+	[%param *header%]
+		<div id="homepageCarousel" class="carousel slide">
+			[%if [@total_showing@] > 1%]
+				<ol class="carousel-indicators">
+					[%site_value id:'counter' type:'load'/%]
+				</ol>
+			[%/if%]
+			<div class="carousel-inner">
+	[%/param%]
+	[%param *footer%]
+			</div>
+			[%if [@total_showing@] > 1%]
+				<a class="left carousel-control" href="#homepageCarousel" data-slide="prev">
+					<span class="fa fa-chevron-left"></span>
+				</a>
+				<a class="right carousel-control" href="#homepageCarousel" data-slide="next">
+					<span class="fa fa-chevron-right"></span>
+				</a>
+			[%/if%]
+		</div>
+		<hr>
+	[%/param%]
+	[%param *ifempty%]
+	[%/param%]
+[%/advert%]
+
+[%advert type:'product' limit:'8' template:'' ad_group:''%]
+	[%param *header%]
+		<div class="row">
+	[%/param%]
+	[%param footer%]
+		</div>
+	[%/param%]
+[%/advert%]
+
+[%if ![@form:pgnum@] OR [@form:pgnum@] eq '1'%]
+	<div class="n-responsive-content">
+		[@content_short_description1@]
+		[@content_short_description2@]
+		[@content_short_description3@]
+	</div>
+	<div class="n-responsive-content">
+		[%parse%]
+			[@content_description1@]
+			[@content_description2@]
+			[@content_description3@]
+			[@content_wufoo_form@]
+		[%/parse%]
+	</div>
+[%/if%]
+
+[%thumb_list type:'content' content_type:'' template:'' limit:'10'%]
+	[%param *header%]
+		<div class="row">
+			<div class="masonry">
+	[%/param%]
+	[%param *footer%]
+			</div>
+		</div>
+		<div class="row text-center">
+			<div class="col-xs-12">
+				<ul class="pagination">
+					[%paging limit:'3'%]
+						[%param *previous_page%]<li><a href="[@URL@]">Previous Page</a></li>[%/param%]
+						[%param *goback_pages%]<li><a href="[@URL@]">[@PAGE@]</a></li>[%/param%]
+						[%param *current_page%]<li class="active"><a href="[@URL@]">[@PAGE@]</a></li>[%/param%]
+						[%param *gonext_pages%]<li><a href="[@URL@]">[@PAGE@]</a></li>[%/param%]
+						[%param *next_page%]<li><a href="[@URL@]">Next Page</a></li>[%/param%]
+					[%/paging%]
+				</ul>
+			</div>
+		</div>
+	[%/param%]
+[%/thumb_list%]
+
+
+[%thumb_list type:'products' template:'' limit:'[@config:related_limit@]'%]
+	[%param header%]
+		<div class="row">
+	[%/param%]
+	[%param footer%]
+		</div>
+	[%/param%]
+[%/thumb_list%]
+[%if [@content_allow_reviews@]%]
+<hr class="subheading">
+<h3 class="subheading social-pane">
+	<div class="social-media-share">
+		<ul>
+			<li role="presentation"><a class="js-social-share" role="menuitem" tabindex="-1" href="//www.facebook.com/sharer/sharer.php?u=[%url_encode%][@url@][%/url_encode%]"><i class="fa fa-facebook-square text-facebook"></i></a></li>
+			<li role="presentation"><a class="js-social-share" role="menuitem" tabindex="-1" href="//twitter.com/intent/tweet/?text=[%url_encode%][@content_name@][%/url_encode%]&amp;url=[%url_encode%][@url@][%/url_encode%]"><i class="fa fa-twitter-square text-twitter"></i></a></li>
+			<li role="presentation"><a class="js-social-share" role="menuitem" tabindex="-1" href="//www.pinterest.com/pin/create/button/?url=[%url_encode%][@url@][%/url_encode%]&amp;description=[%url_encode%][@content_name@][%/url_encode%]"><i class="fa fa-pinterest-square text-pinterest"></i></a></li>
+			<li role="presentation"><a class="js-social-share" role="menuitem" tabindex="-1" href="//plus.google.com/share?url=[%url_encode%][@url@][%/url_encode%]"><i class="fa fa-google-plus-square text-google-plus"></i></a></li>
+			<li role="presentation"><a class="js-social-share" role="menuitem" tabindex="-1" href="mailto:?subject=[%url_encode%]Take a look at this article: [@content_name@][%/url_encode%] &body=[%url_encode%][@url@][%/url_encode%]"><i class="fa fa-envelope-square text-email"></i></a></li>
+		</ul>
+	</div>
+</h3>
+
+<a id="comments"></a><hr />
+[%thumb_list type:'content_reviews' limit:'5'%]
+	[%param filter_1%][@CONTENT_ID@][%/param%]
+	[%param *header%]
+		<h3>Comments</h3>
+	[%/param%]
+	[%param *body%]
+		<div itemprop="review" itemscope itemtype="http://schema.org/Review">
+			<blockquote class="review">
+				<h4 itemprop="name"><i>[%nohtml%][@title@][%/nohtml%]</i></h4>
+				<div>
+					<strong>[%if [@reviewname@]%]<span itemprop="author">[@reviewname@]</span> on [%/ if%]<meta itemprop="datePublished" content="[%format type:'date'%][@insert_date@][%/format%]">[%format type:'date'%][@insert_date@][%/format%]</strong>
+				</div>
+				<span itemprop="description">[%nohtml%][@review@][%/nohtml%]</span>
+				[%if [@review_response@]%]
+					<br /><br />
+					<blockquote class="response">
+						<span class="review_response text-muted"><strong><i>[@config:website_name@] Response</i></strong><br /> [%nohtml%][@review_response@][%/nohtml%]</span>
+					</blockquote>
+				[%/if%]
+			</blockquote> <hr />
+		</div>
+	[%/param%]
+[%/thumb_list%]
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#comment">Leave a comment</button>
+
+<!-- Modal -->
+<div class="modal fade" id="comment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-body">
+				<form name="edit_review" method="post" role="form" action="[%URL page:'account' type:'write_contentreview'%][%/URL%]">
+					<fieldset>
+						<input type="hidden" name="fn" value="confirm">
+						<input type="hidden" name="item" value="[@content_id@]">
+						<input type="hidden" name="checked_terms_and_conditions" value="1">
+						<input type="hidden" name="rating_value" id="rating_value" value="5"/>
+						<div class="form-group">
+							<label for="review_title">Title For Comment</label>
+							<input class="form-control" type="text" name="review_title" id="review_title" value="[%nohtml%][@form:review_title@][%/nohtml%]" required/>
+						</div>
+						<div class="form-group">
+							<label for="review_text">Your Comment</label>
+							<textarea name="review_text" id="review_text" rows="10" class="form-control" required>[%nohtml%][@form:review_text@][%/nohtml%]</textarea>
+						</div>
+						[%ajax_loader%]
+							[%if ![@user:username@] or [@user:username@] eq 'noreg'%]
+								<div class="form-group">
+									<label for="customername">Your Name</label>
+									<input class="form-control" type="text" name="customername" id="customername" value="[%nohtml%][@form:customername@][%/nohtml%]" required/>
+								</div>
+								<div class="form-group">
+									<label for="emailaddress">Your Email Address</label>
+									<input class="form-control" size="70" type="email" name="emailaddress" id="emailaddress" value="[%nohtml%][@form:emailaddress@][%/nohtml%]" required/>
+								</div>
+							[%/if%]
+						[%/ajax_loader%]
+						<p>
+							<button type="submit" class="btn btn-success" />Post Comment</button>
+						</p>
+						<p class="text-muted">Comments have to be approved before showing up</p>
+					</fieldset>
+				</form>
+
+			</div>
+		</div>
+	</div>
+</div>
+[%/if%]
+</div>

@@ -1,0 +1,278 @@
+<!-- Love N Care Category Template -->
+<div class="col-xs-12">
+	[%set [@page_type@]='category'/%]
+
+	[%set [@has_categorybanner@]%][%asset_url type:'content' thumb:'alt_1' id:'[@content_id@]' /%][%/set%]
+	[%if [@has_categorybanner@]%]
+	<div class="category-banner" style="background-image: url('[%asset_url type:'content' thumb:'alt_1' id:'[@content_id@]' /%]')">
+		<div class="category-caption">
+			<h1 class="page-header category-headline text-center">
+				[%url_info name:'page_heading' if:'eq' value:''%]
+					[%param if_true%]
+						[@content_name@]
+					[%/param%]
+					[%param if_false%]
+						[%url_info name:'page_heading'%][%end url_info%]
+					[%/param%]
+				[%end url_info%]
+				[%if [@keywords@] == ''%]
+					[%filter ID:'keywords' if:'ne' value:''%][%nohtml%][%filter ID:'keywords'%][%/filter%][%/nohtml%][%/filter%]
+				[%/if%]
+			</h1>
+		</div>
+	</div>
+	[%else%]
+	<h1 class="page-header text-center">
+		[%url_info name:'page_heading' if:'eq' value:''%]
+			[%param if_true%]
+				[@content_name@]
+			[%/param%]
+			[%param if_false%]
+				[%url_info name:'page_heading'%][%end url_info%]
+			[%/param%]
+		[%end url_info%]
+		[%if [@keywords@] == ''%]
+			[%filter ID:'keywords' if:'ne' value:''%][%nohtml%][%filter ID:'keywords'%][%/filter%][%/nohtml%][%/filter%]
+		[%/if%]
+	</h1>
+	[%/if%]
+
+	[%if ![@form:pgnum@] OR [@form:pgnum@] eq '1'%]
+		[%advert type:'text' template:'carousel' inherit:'n' limit:'10' ad_group:''%]
+			[%param *header%]
+				<div id="homepageCarousel" class="carousel slide">
+					[%if [@total_showing@] > 1%]
+						<ol class="carousel-indicators">
+							[%site_value id:'counter' type:'load'/%]
+						</ol>
+					[%/if%]
+					<div class="carousel-inner">
+			[%/param%]
+			[%param *footer%]
+					</div>
+					[%if [@total_showing@] > 1%]
+						<a class="left carousel-control" href="#homepageCarousel" data-slide="prev">
+							<span class="fa fa-chevron-left"></span>
+						</a>
+						<a class="right carousel-control" href="#homepageCarousel" data-slide="next">
+							<span class="fa fa-chevron-right"></span>
+						</a>
+					[%/if%]
+				</div>
+				<hr>
+			[%/param%]
+			[%param *ifempty%]
+			[%/param%]
+		[%/advert%]
+		[%advert type:'product' limit:'8' template:'' inherit:'n' ad_group:''%]
+			[%param *header%]
+				<div class="row">
+			[%/param%]
+			[%param footer%]
+				</div>
+				<hr>
+			[%/param%]
+		[%/advert%]
+		[%if [@content_short_description1@] or [@content_short_description2@] or [@content_short_description3@] or [@content_description1@] or [@content_description2@] or [@content_description3@]%]
+			<div class="n-responsive-content">
+				[@content_short_description1@]
+				[@content_short_description2@]
+				[@content_short_description3@]
+			</div>
+			<div class="n-responsive-content">
+				[@content_description1@]
+				[@content_description2@]
+				[@content_description3@]
+			</div>
+			<hr>
+		[%/if%]
+	[%/if%]
+</div>
+
+[%load_template file:'cms/includes/sidebar.template.html'/%]
+[%thumb_list type:'products' limit:'[@config:THUMB_LIMIT@]'%]
+	[%param template%][%viewby type:'products' default:'[@templatethumb@]'%][%/viewby%][%/param%]
+	[%param *header%]
+	<div class="row sort_container">
+		<div class="hidden-xs col-sm-6 col-md-8">
+			[%breadcrumb%]
+				[%param *header%]
+					<ul class="breadcrumb">
+						<li>
+							<a href="[@config:home_url@]">Home</a>
+						</li>
+				[%/param%]
+				[%param *body%]
+					<li class="current">
+						<a href="[@url@]">[@name@]</a>
+					</li>
+				[%/param%]
+				[%param *footer%]
+					</ul>
+				[%/param%]
+			[%/breadcrumb%]
+		</div>
+		<div class="col-xs-12 col-sm-6 col-md-4">
+			<form method="get" class="form-horizontal" action="[@config:CURRENT_URL@]">
+				<input name="rf" type="hidden" value="[%filter_CODE%][%/filter_CODE%]">
+				<div class="form-group">
+					<label class="control-label col-xs-2">Sort</label>
+					<div class="col-xs-10">
+						<select name="sortby" onChange="return this.form.submit();" class="form-control">
+							<option value="popular" [%SORTBY type:'products' if:'eq' value:'popular'%]selected[%/SORTBY%]>
+								Most popular
+							</option>
+							<option value="name" [%SORTBY type:'products' if:'eq' value:'name'%]selected[%/SORTBY%]>
+								Name
+							</option>
+							<option value="SKU" [%SORTBY type:'products' if:'eq' value:'SKU'%]selected[%/SORTBY%]>
+								SKU
+							</option>
+							<option value="lowest_price" [%SORTBY type:'products' if:'eq' value:'lowest_price'%]selected[%/SORTBY%]>
+								Lowest price
+							</option>
+							<option value="highest_price" [%SORTBY type:'products' if:'eq' value:'highest_price'%]selected[%/SORTBY%]>
+								Highest price
+							</option>
+						</select>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<hr>
+		</div>
+	</div>
+	<div class="[%viewby type:'products' if:'eq' value:'list' if_true:'thumb_list' if_false:'thumb'%][%/viewby%]">
+		<div class="row">
+		[%/param%]
+		[%param *footer%]
+		</div>
+	</div>
+	[%if [@total_results@] > [@config:thumb_limit@]%]
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="text-center">
+					<ul class="pagination">
+						[%paging limit:'3'%]
+							[%param *previous_page%]<li><a href="[@URL@]"><i class="fa fa-chevron-left"></i></a></li>[%/param%]
+							[%param *goback_pages%]<li><a href="[@URL@]">[@PAGE@]</a></li>[%/param%]
+							[%param *current_page%]<li class="active"><a href="[@URL@]">[@PAGE@]</a></li>[%/param%]
+							[%param *gonext_pages%]<li><a href="[@URL@]">[@PAGE@]</a></li>[%/param%]
+							[%param *next_page%]<li><a href="[@URL@]"><i class="fa fa-chevron-right"></i></a></li>[%/param%]
+						[%/paging%]
+					</ul>
+				</div>
+			</div>
+		</div>
+	[%/if%]
+	[%/param%]
+	[%param *ifempty%]
+		<div class="row">
+			<div class="col-xs-12">
+				<p>This category is empty! Please try another category or use our search function to find what you are looking for. If you require further assistance please contact us.</p>
+			</div>
+		</div>
+	[%/param%]
+[%/thumb_list%]
+</div>
+<div class="col-xs-12">
+	[%config id:'phistory_limit' if:'ne' value:'0'%]
+		[%product_history limit:'6' template:'history'%]
+			[%param header%]
+			<hr class="subheading" />
+			<h3 class="subheading">Your browsing history</h3>
+			<br />
+			<div class="row">
+			[%/param%]
+			[%param footer%]
+			</div>
+			[%/param%]
+		[%/product_history%]
+	[%/config%]
+</div>
+
+
+<div class="col-xs-12">
+	<style>
+	/* Style the buttons that are used to open and close the accordion panel */
+	.accordion-custom {
+	  background-color: #eee;
+	  color: #3d3747;
+	  cursor: pointer;
+	  padding: 18px;
+	  width: 100%;
+	  text-align: left;
+	  border: none;
+	  outline: none;
+	  transition: 0.4s;
+	  margin: 5px 0;
+	}
+
+	/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+	.active-custom, .accordion-custom:hover {
+	  background-color: #ccc;
+	}
+
+	/* Style the accordion panel. Note: hidden by default */
+	.panel-accordion-custom {
+	  padding: 0 18px;
+	  background-color: white;
+	  display: none;
+	  overflow: hidden;
+	}
+	</style>
+
+	<button class="accordion-custom">Shop our collection of Love N Care bassinets and sleepers</button>
+	<div class="panel-accordion-custom">
+		<p>As any parent knows, getting a baby to fall asleep - and stay asleep - requires every bit of precision and gentleness. Otherwise, you're in for a long evening full of stops and starts. Our Love N Care bassinets can make it a little easier, both for mum andnewborn. The brand is behind some of the most wonderful bassinets, cots, and sleepers for your little one. These nursery essentials blend classic designs with modern safety features to give you peace of mind. Your baby will sleep well, and so will you.</p>
+		<p>From the padded comfort of our Love N Care Moonlight Sleeper to the no-frills practicality of the Love N Care bed rail, we’re proud to offer a diverse range of products from one of Australia’s most loved baby brands. No matter your parenting style or your baby’s sleeping habits, you're bound to find something that suits your needs.</p>
+		<p>Mother World is committed to mum and baby’s well-being. We hope that our Love N Care high chairs and prams will serve you well as your baby grows.</p>
+	</div>
+
+	<button class="accordion-custom">Love N Care will help you get some shut-eye</button>
+	<div class="panel-accordion-custom">
+		<p>Babies follow their own sleep schedule - not ours! During those first few months, your newborn may drift in and out of sleep with feedings in between. As mum, you’ll have to make sure that your baby is safe and comfortable throughout the night. Love N Care offers an excellent selection of sleepers and other bedtime accessories for stress-free evenings.</p>
+		<p>Known for quality and safety, this popular baby brand will help make the mum experience just a little easier.</p>
+		<p>
+			<ul>
+				<li>Our Love N Care Dreamtime Sleeper is the perfect bedside companion for mums who want to safely sleep next to their little ones. Available in two gorgeous colours, this modern sleeper comes with safety straps and adjustable height and tilt. It also has a removable inner lining to keep your baby cool and fresh on especially warmer days.</li>
+				<li>The Love N Care Bordeaux Cot is a fool-proof cot bed with teething rails for curious and adventurous babies. Protect your child’s delicate gums as they bite and chew their way around their crib.</li>
+				<li>If your baby is especially finicky, try our Love N Care Wave Swing. This smart baby seat comes with an extra soft cushion and a programmable feature that play soft melodies to soothe and entertain your little one. With Bluetooth connectivity and a touch panel, this baby seat was made for the modern mum.</li>
+			</ul>
+		</p>
+		<p>And that’s just a preview of what Love N Care has to offer. Explore our collection of baby products today!</p>
+	</div>
+
+	<button class="accordion-custom">Love N Care has been serving parents since 1987</button>
+	<div class="panel-accordion-custom">
+		<p>An established brand, Love N Care has been producing the best bassinets, prams, and high chairs in Australia for decades. The company is committed to giving parents a little more freedom and mobility with well-designed baby products. We know that those first few months (or years!) can be gruelling for parents. That’s why we included Love N Care in our lineup of baby products. We hope that their baby essentials will make it easier for you to cope with mum duties.</p>
+		<p>Love N Care prams are known for their durability and safety features. If mum and baby need to step out for some fresh air, or run a few errands, their prams and strollers should make the trip safer and more enjoyable. You never have to worry about a strap coming loose or keeping your baby sheltered from the sun. Love N Care was designed with your baby’s needs in mind. It’s one less thing to think about. So you can breathe and cherish each moment.</p>
+	</div>
+
+	<button class="accordion-custom">Love N Care brings you the best of both worlds</button>
+	<div class="panel-accordion-custom">
+		<p>Decorating your baby nursery? Love N Care lets you fill your baby’s room with elegant baby furniture with modern safety features. From beautiful herringbone patterns to soft colours, our Love N Care bassinets and cots were designed for the discerning mum. Get both style and substance with practical features like adjustable height to teething rails. Our nursery furniture successfully blends aesthetics with your baby’s safety and comfort.</p>
+		<p>Love N Care high chairs are another must-have for busy mums who need to make mealtimes as fuss-free as possible. These high chairs will comfortably keep your baby in place as you feed and nourish them. You’ll never have to improvise when your baby’s high chair has a stable base and plenty of cushioning to keep your baby cozy.</p>
+		<p>The brand is also synonymous with Love N Care prams, which are unmatched when it comes to safety, comfort, and mobility. You’ll go places with our high-quality prams.</p>
+		<p>Mother World is committed to your satisfaction and well-being. We hope that our product selection meets your needs as a mum with a modern lifestyle.</p>
+	</div>
+	<script>
+	var acc = document.getElementsByClassName("accordion-custom");
+	var i;
+
+	for (i = 0; i < acc.length; i++) {
+	  acc[i].addEventListener("click", function() {
+		this.classList.toggle("active-custom");
+		var panel = this.nextElementSibling;
+		if (panel.style.display === "block") {
+		  panel.style.display = "none";
+		} else {
+		  panel.style.display = "block";
+		}
+	  });
+	}
+	</script>
+</div>
