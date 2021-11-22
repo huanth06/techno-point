@@ -556,6 +556,8 @@ select.form-control{
 #shipbox {
 	.d-flex-calculator {
 		>div {
+			flex: 1;
+			margin-right: 20px;
 			select {
 				-webkit-appearance: none;
 				appearance: none;
@@ -579,8 +581,6 @@ select.form-control{
 					z-index: 1;
 				}
 			}
-			flex: 1;
-			margin-right: 20px;
 			button {
 				height: 46px;
 				border: 1px solid #ddd;
@@ -610,10 +610,9 @@ select.form-control{
 			}
 		}
 		display: flex;
+		align-items: center;
 	}
-	background: #f7f7f7;
-	border: none;
-	margin-top: 20px;
+	
 	>.panel-body {
 		padding: 20px 80px;
 		display: flex;
@@ -621,13 +620,17 @@ select.form-control{
 		align-items: center;
 		>div{
 			flex: 1;
-			margin-left: 20px;
+			margin-left: 0;
 		}
 	}
 	.panel-title {
 		font: 600 20px/26px $main-font;
 		margin-bottom: 0px;
+		margin-right: 10px;
 	}
+	background: #f7f7f7;
+	border: none;
+	margin-top: 20px;
 }
 .wishlistoverlay .listname{padding-right: 10px;}
 #n_home {
@@ -828,7 +831,7 @@ body {
 				font: 600 18px/22px $main-font;
 				background: 0 0;
 				&:hover {
-					background: #2fb1a1;
+					background: #0ABFBD;
 					color: #fff;
 				}
 			}

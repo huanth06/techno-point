@@ -1,7 +1,8 @@
 
 <div class="btn-stack d-flex-calculator">
+	<h3 class="panel-title">POSTAGE</h3>
 	<div >
-		<input type="number" name="input" id="n_qty" value="[@qty@]" size="2" class="form-control" placeholder="Qty">
+		<input type="number" name="input" id="n_qty" value="1" size="2" class="form-control" placeholder="Qty">
 	</div>
 	<div >
 		<select id="country" class="form-control">
@@ -19,7 +20,7 @@
 		<button type="button" class="btn btn-block btn-primary btn-loads" data-loading-text="<i class='fa fa-refresh fa-spin' style='font-size: 14px'></i>" onClick="javascript:$.load_ajax_template('_shipping_calc', {'showloading': '1', 'sku': '[@SKU@]', 'qty': $('#n_qty').val() , 'ship_zip': $('#zip').val(), 'ship_country': $('#country').val()}),$(this).button('loading');" title="Calculate"><i class="fa fa-refresh"></i> Calculate</button>
 	</div>
 </div>
-<!-- [%shipping_methods sortby:'delivery_time' sku:'[@SKU@]' qty:'[@qty@]' zip:'[@ship_zip@]' country:'[@ship_country@]'%]
+[%shipping_methods sortby:'delivery_time' sku:'[@SKU@]' qty:'[@qty@]' zip:'[@ship_zip@]' country:'[@ship_country@]'%]
 	[%param *header%]
 		<br />
 	[%/param%]
@@ -34,4 +35,4 @@
 	[%param *ifempty%]
 		[%if [@ship_zip@]%]<p class="alert alert-danger alert-shipping-error">Shipping not available to selected location.</p>[%/if%]
 	[%/param%]
-[%/shipping_methods%] -->
+[%/shipping_methods%]

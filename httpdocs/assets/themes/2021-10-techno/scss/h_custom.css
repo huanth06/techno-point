@@ -42,7 +42,11 @@ a.text-clear-all {
   left: 0;
   top: 0;
   bottom: 0;
-  right: 0; }
+  right: 0;
+  background: rgba(0, 0, 0, 0.4); }
+
+.bg-gray-category + .section-previously.container, #n_home .container.section-previously {
+  display: none !important; }
 
 #n_category #main-content {
   padding-top: 0;
@@ -318,9 +322,12 @@ body > .wrapper-page {
   transition: all 0.3s ease 0s; }
 body.body-menu-right {
   overflow: hidden;
-  padding-left: 0; }
+  padding-left: 0;
+  height: 100%; }
   body.body-menu-right > .wrapper-page {
-    padding-left: 340px; }
+    padding-left: 340px;
+    overflow: hidden;
+    height: 100%; }
 
 .jXkIyN {
   display: none !important; }
@@ -469,10 +476,10 @@ select.form-control {
   border: none;
   margin-top: 20px; }
   #shipbox .d-flex-calculator {
-    display: flex; }
+    display: flex;
+    align-items: center; }
     #shipbox .d-flex-calculator > div {
-      flex: 1;
-      margin-right: 20px; }
+      flex: 1; }
       #shipbox .d-flex-calculator > div select {
         -webkit-appearance: none;
         appearance: none;
@@ -523,7 +530,8 @@ select.form-control {
       margin-left: 20px; }
   #shipbox .panel-title {
     font: 600 20px/26px "Titillium Web";
-    margin-bottom: 0px; }
+    margin-bottom: 0px;
+    margin-right: 10px; }
 
 .wishlistoverlay .listname {
   padding-right: 10px; }
@@ -873,7 +881,7 @@ div#sm-submit-form-61560 {
   position: absolute;
   left: -36px;
   top: 50%;
-  transform: translateY(-50%) rotateY(-180deg);
+  transform: translateY(-50%) rotate(-180deg);
   width: 36px;
   height: 83px;
   background: url(../img/ic-owl-next.png) no-repeat scroll center !important;
@@ -1387,27 +1395,27 @@ h1.page-header {
   align-items: center;
   justify-content: center; }
 
-.section-previously {
+.section-previously.container {
   padding-top: 30px;
   padding-bottom: 30px; }
-  .section-previously .savings-container {
-    display: none; }
-  .section-previously h3 {
-    margin-bottom: 15px; }
-  .section-previously .thumbnail {
-    display: flex;
-    border: none;
-    align-items: flex-start; }
-    .section-previously .thumbnail .caption {
-      height: inherit; }
-      .section-previously .thumbnail .caption h3 a {
-        height: inherit;
-        max-height: 71px;
-        overflow: hidden; }
-  .section-previously .thumbnail-image {
-    border: 1px solid #ddd;
-    width: 117px;
-    min-width: 117px; }
+.section-previously .savings-container {
+  display: none; }
+.section-previously h3 {
+  margin-bottom: 15px; }
+.section-previously .thumbnail {
+  display: flex;
+  border: none;
+  align-items: flex-start; }
+  .section-previously .thumbnail .caption {
+    height: inherit; }
+    .section-previously .thumbnail .caption h3 a {
+      height: inherit;
+      max-height: 71px;
+      overflow: hidden; }
+.section-previously .thumbnail-image {
+  border: 1px solid #ddd;
+  width: 117px;
+  min-width: 117px; }
 
 .btn-view-more {
   font: 600 13px/20px "Roboto";
@@ -1518,7 +1526,8 @@ h1.page-header {
     height: 40px;
     border: 1px solid #DDDDDD;
     box-shadow: none;
-    appearance: none; }
+    background: #fff;
+    appearance: revert; }
   .sort_container .col-xs-12 {
     padding: 0; }
   .sort_container .btn-text {
@@ -1610,7 +1619,7 @@ h1.page-header {
   .thumbnail .caption {
     padding: 0 20px;
     min-height: inherit;
-    height: 155px; }
+    height: 160px; }
     .thumbnail .caption h3 {
       text-transform: capitalize;
       margin-bottom: 5px; }
@@ -1625,15 +1634,17 @@ h1.page-header {
           text-decoration: none; }
     .thumbnail .caption .sku {
       font: 400 14px/20px "Roboto";
-      color: #999; }
+      color: #999;
+      white-space: nowrap; }
   .thumbnail .price {
     display: flex;
-    gap: 10px;
+    column-gap: 10px;
     flex-wrap: wrap; }
     .thumbnail .price small {
       font-size: 100%; }
     .thumbnail .price span[itemprop=price] {
-      font: 700 22px/28px "Titillium Web"; }
+      font: 700 22px/28px "Titillium Web";
+      line-height: 1; }
     .thumbnail .price .original-rrp {
       text-decoration: line-through !important;
       font: 400 14px/20px "Roboto"; }
@@ -2082,6 +2093,13 @@ h1.page-header {
     padding: 0 10px; }
     .wrap-home-blog .col-sm-4:nth-child(n+4) {
       display: none; } }
+@media (min-width: 768px) and (max-width: 1024px) {
+  .wrapper-footer .col-item {
+    float: left; }
+
+  .wrapper-footer .col-item.col-1 {
+    width: 33.33%;
+    padding-right: 15px; } }
 @media (max-width: 1500px) {
   #shipbox > .panel-body {
     padding: 20px; }
@@ -2125,6 +2143,9 @@ a:hover {
   .owl-carousel .thumbnail .caption {
     padding: 0 15px; } }
 @media (max-width: 991px) {
+  #n_content .n-responsive-content h2 {
+    font: 600 24px/30px "Titillium Web"; }
+
   .click-shop-all.active i {
     background: url(../img/ic-close.svg) no-repeat scroll center !important;
     width: 12px;
@@ -2476,6 +2497,13 @@ a:hover {
   .navbar-nav > li > .dropdown-menu .row > div:last-child {
     transform: translateX(-20px); } }
 @media (max-width: 767px) {
+  .section-previously.container {
+    padding-top: 20px;
+    padding-bottom: 20px; }
+
+  #n_content .n-responsive-content h2 {
+    font: 600 18px/22px "Titillium Web"; }
+
   .owl-item .thumbnail {
     margin-bottom: 0px; }
 
@@ -2569,7 +2597,9 @@ a:hover {
 
   .wrap-border-detail {
     max-width: 100%;
-    margin-bottom: 15px; }
+    margin-bottom: 15px;
+    float: none;
+    clear: both; }
 
   .description p {
     margin-bottom: 8px; }
@@ -2885,7 +2915,8 @@ a:hover {
   .wrapper-foot address {
     margin-bottom: 10px; }
   .wrapper-foot .d-flex {
-    justify-content: center; }
+    justify-content: center;
+    flex-direction: column; }
 
   .icon-search-mobile {
     margin-right: 6px; }
