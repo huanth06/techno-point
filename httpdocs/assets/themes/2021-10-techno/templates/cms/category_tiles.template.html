@@ -89,17 +89,3 @@
 </div>
 
 </div>
-[%config id:'phistory_limit' if:'ne' value:'0'%]
-	[%product_history limit:'6' template:'history'%]
-		[%param header%]
-		<div class="container section-previously">
-		<h3 class="subheading">Previously Seen</h3>
-		<div class="row">
-		[%/param%]
-		[%param footer%]
-		</div>
-		</div>
-		[%/param%]
-	[%/product_history%]
-[%/config%]
-

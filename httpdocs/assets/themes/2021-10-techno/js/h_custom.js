@@ -226,9 +226,18 @@ $(document).ready(function ($) {
     });
     $('.wrap-menu-product-all>ul ul').before('<span class="icon-bottom-click"></span>');
     $('.icon-bottom-click').click(function() {
+        let currentThisNext = $(this).next();
+        let currentThisPev = $(this).prev();
+        let parentsThis = $(this).parent().parent();
+        parentsThis.children('li').children('a').not(currentThisPev).removeClass('active');
+        parentsThis.children('li').children('ul').not(currentThisNext).removeClass('active');
+        parentsThis.children('li').children('.icon-bottom-click').not($(this)).removeClass('active');
+        
         $(this).prev().toggleClass('active');
         $(this).toggleClass('active');
         $(this).next('ul').toggleClass('active');
+
+
     });
     $('.click-shop-all').click(function() {
         $('body').toggleClass('body-menu-right');

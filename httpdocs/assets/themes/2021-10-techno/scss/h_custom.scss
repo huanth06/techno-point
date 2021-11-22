@@ -45,7 +45,9 @@ a.text-clear-all{
     top: 0;
     bottom: 0;
     right: 0;
+	background: rgba(0,0,0,0.4);
 }
+.bg-gray-category+.section-previously.container,#n_home .container.section-previously{display: none !important;}
 #n_category #main-content{padding-top: 0;padding-bottom: 0;}
 #n_content .n-responsive-content{
 	h1{
@@ -365,8 +367,11 @@ body{
 	&.body-menu-right{
 		overflow: hidden;
 		padding-left: 0;
+		height: 100%;
 		>.wrapper-page{
 			padding-left: 340px;
+			overflow: hidden;
+			height: 100%;
 		}
 	}
 }
@@ -1714,8 +1719,10 @@ h1.page-header{
 	}
 }
 .section-previously {
-	padding-top: 30px;
-	padding-bottom: 30px;
+	&.container{
+		padding-top: 30px;
+		padding-bottom: 30px;
+	}
 	.savings-container{
 		display: none;
 	}
@@ -1870,7 +1877,8 @@ h1.page-header{
 		height: 40px;
 		border: 1px solid #DDDDDD;
 		box-shadow: none;
-		appearance: none;
+		background: #fff;
+		appearance: revert;
 	}
 	.col-xs-12{
 		padding: 0;
@@ -2008,21 +2016,22 @@ h1.page-header{
 		}
 		padding: 0 20px;
 		min-height: inherit;
-		height: 155px;
+		height: 160px;
 		.sku{
 			font: 400 14px/20px "Roboto";
 			color: #999;
+			white-space: nowrap;
 		}
 	}
 	.price {
 		display: flex;
-		gap: 10px;
+		column-gap: 10px;
 		flex-wrap: wrap;
 		small{
 			font-size: 100%;
 		}
 		span[itemprop=price] {
-			font: 700 22px/28px $main-font;
+			font: 700 22px/28px $main-font;line-height: 1;
 		}
 		.original-rrp{
 			text-decoration: line-through !important;
@@ -2577,6 +2586,9 @@ a:hover{text-decoration: none;}
 	}
 }
 @media (max-width:991px) {
+	#n_content .n-responsive-content h2{
+		font: 600 24px/30px "Titillium Web";
+	}
 	.click-shop-all.active i{background: url(../img/ic-close.svg) no-repeat scroll center !important;width: 12px;height: 12px;background-size: 100% auto;}
 	.container{width: 100% !important;}
 	.thumbnail .caption .sku{font-size: 13px;    height: 18px;overflow: hidden;white-space: nowrap;}
@@ -3004,6 +3016,10 @@ a:hover{text-decoration: none;}
 	}
 }
 @media (max-width:767px) {
+	.section-previously.container{padding-top: 20px;padding-bottom: 20px;}
+	#n_content .n-responsive-content h2{
+		font: 600 18px/22px "Titillium Web";
+	}
 	.owl-item .thumbnail{margin-bottom: 0px;}
 	.thumbnail:hover .bottom-action{
 		display: none;
@@ -3067,7 +3083,7 @@ a:hover{text-decoration: none;}
 	}
 	#n_product h1.product-name{font-size: 22px;line-height: 28px;}
 	.wrap-border-description{padding: 15px 10px;}
-	.wrap-border-detail{max-width: 100%;margin-bottom: 15px;}
+	.wrap-border-detail{max-width: 100%;margin-bottom: 15px;float: none;clear: both;}
 	.description p{margin-bottom: 8px;}
 	.wrap-border-description .title, h3.subheading, h3.title-page{font-size: 18px;line-height: 24px;}
 	#shipbox .d-flex-calculator>div input,#shipbox .d-flex-calculator>div button,#shipbox .d-flex-calculator>div select{height: 36px;font-size: 13px;}
@@ -3420,6 +3436,7 @@ a:hover{text-decoration: none;}
 		}
 		.d-flex {
 			justify-content: center;
+			flex-direction: column;
 		}
 	}
 	.icon-search-mobile {
