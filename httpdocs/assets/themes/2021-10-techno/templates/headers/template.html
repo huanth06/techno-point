@@ -166,14 +166,28 @@
 				<div class="full-menu-wrapper">
 					<ul class="nav center-nav navbar-nav hidden-xs">
 						<li><a class="click-shop-all"><i class="fa fa-bars"></i> Shop all products</a></li>
-						[%cache type:'menu' id:'header-content-menu'%]
-                        [%menu id:'navigationRight'%]
+						[%cache type:'menu' id:'header-menu-nav'%]
+                        [%content_menu content_type:'category' sortby:'sortorder' show_empty:'1'%]
                         [%param *level_1%]
                         <li class="[%if [@next_level@]%]dropdown dropdown-hover[%/if%]"> <a href="[@url@]" [%if [@next_level@]%]class="dropdown-toggle"[%/if%]>[@name@]</a>
                             [%if [@next_level@]%]
-                            <ul class="dropdown-menu">
-                                [@next_level@]
-                            </ul>
+                            <div class="dropdown-menu">
+								<div class="mega-menu-left">
+									<ul>
+                                	[@next_level@]
+									</ul>
+								</div>
+								[%random_products category:'[@id@]' template:'' limit:'5'%]
+								[%param *header%]
+								<div class="mega-menu-right">
+									<div class="owl-carousel" data-lg-items="1" data-md-items="1" data-sm-items="1" data-xs-items="1" data-nav="true">
+									[%/param%]
+									[%param *footer%]
+									</div>
+								</div>
+								[%/param%]
+								[%/random_products%]
+                            </div>
                             [%/if%]
                         </li>
                         [%/param%]
@@ -195,7 +209,7 @@
                             [%/if%]
                         </li>
                         [%/param%]
-                        [%/menu%]
+                        [%/content_menu%]
                         [%/ cache%]
 					</ul>
 				</div>
