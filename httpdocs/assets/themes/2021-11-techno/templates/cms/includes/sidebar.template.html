@@ -1,0 +1,193 @@
+<div class="col-xs-12 col-sm-3" id="left-sidebar">
+	[%if [@page_type@] eq 'category' and [@config:show_filters@]%]
+	<div class="panel-header panel-heading-thumbnails hidden-xs">
+		<p class="panel-title">Filter</p>
+	</div>
+		<div class="panel panel-default">
+			<div class="panel-heading panel-heading-thumbnails visible-xs">
+				<div class="panel-title">
+					<a class="accordion-toggle" data-toggle="collapse" data-parent="#filters-accordion" href="#filters">Filter <i class="fa fa-angle-down"></i></a>
+				</div>
+			</div>
+			<ul id="filters" class="panel-collapse collapse list-group">
+				[%product_filter type:'category' autohide:'0' filter_parent_content:'1'%]
+					[%param header%]
+						<li class="list-group-item"><p class="heading4">Categories <i class="fa fa-angle-down"></i></p><ul>
+					[%/param%]
+					[%param *body%]
+						[%data id:'selected' if:'==' value:'1'%]
+							[%param *if_true%]
+								<li class="filter-remove"><a href="[@remove_url@]" class="list-group-item" rel="nofollow">
+									[@name@]</a>
+								</li>
+							[%/param%][%param *if_false%]
+								<li class="filter">
+									<a href="[@url@]" class="list-group-item">[@name@]</a>
+								</li>
+							[%/param%]
+						[%/data%]
+					[%/param%]
+					[%param footer%]</ul></li>[%/param%]
+				[%/product_filter%]
+				[%product_filter type:'variations' autohide:'0' ignorefilter:'1' sortoption:'sortorder'%]
+					[%param *header%]
+						<li class="list-group-item"><p class="heading4">[@filter_name@] <i class="fa fa-angle-down"></i></p><ul>
+					[%/param%]
+					[%param *body%]
+
+						[%if [@filter_name@] eq 'Colour' %]
+								[%data id:'selected' if:'==' value:'1'%]
+									[%param *if_true%]
+										<li class="filter-remove filter filter-colour">
+											<a href="[@remove_single_url@]" class="list-group-item" rel="nofollow" data-toggle="tooltip" title="[@name@]" style="
+												[%if [@variation_swatch@] ne ''%]
+												background-color:[@variation_swatch@]
+												[%else%]
+												background-image:url('[%asset_url type:'itemspecific' id:'[@id@]'/%]')
+												[%/if%]">
+											</a>
+										</li>
+									[%/param%]
+									[%param *if_false%]
+										<li class="filter filter-colour">
+											<a class="list-group-item" href="[@url@]" data-toggle="tooltip" title="[@name@]" style="
+												[%if [@variation_swatch@] ne ''%]
+												background-color:[@variation_swatch@]
+												[%else%]
+												background-image:url('[%asset_url type:'itemspecific' id:'[@id@]'/%]')
+												[%/if%]">
+											</a>
+										</li>
+									[%/param%]
+								[%/data%]
+						[%else%]
+								[%data id:'selected' if:'==' value:'1'%]
+									[%param *if_true%]
+										<li class="filter-remove filter"><a href="[@remove_single_url@]" class="list-group-item" rel="nofollow">
+											[@name@] <span class="text-muted"></span></a>
+										</li>
+									[%/param%]
+									[%param *if_false%]
+										<li class="filter" line57>
+											<a class="list-group-item" href="[@url@]"> [@name@] <span class="text-muted"></span></a>
+										</li>
+									[%/param%]
+								[%/data%]
+						[%/if%]
+
+					[%/param%]
+
+					[%param *footer%]
+						</ul></li>
+						[%data id:'activecount' if:'>' value:'0'%]
+							[%param *if_true%]
+								<a href="[@remove_url@]" class="pull-right"> clear</a>
+							[%/param%]
+						[%/data%]
+					[%/param%]
+				[%/product_filter%]
+				[%product_filter type:'brand' limit:'50' autohide:'0'%]
+						[%param header%]
+							<li class="list-group-item"><p class="heading4">Brand <i class="fa fa-angle-down"></i></p><ul>
+						[%/param%]
+						[%param *body%]
+							[%data id:'selected' if:'==' value:'1'%]
+								[%param *if_true%]
+									<li class="filter-remove"><a href="[@remove_url@]" class="list-group-item" rel="nofollow">
+										[@brand@] <span class="text-muted">([@total@])</span></a>
+									</li>
+								[%/param%][%param *if_false%]
+									<li class="filter">
+										<a href="[@url@]" class="list-group-item">[@brand@] <span class="text-muted">([@total@])</span></a>
+									</li>
+								[%/param%]
+							[%/data%]
+						[%/param%]
+						[%param more%]
+							<li class="lv1"><a class="list-group-item" href="[%URL type:'page' id:'brands'%][%/URL%]">Show all brands...</a></li>
+						[%/param%]
+						[%param footer%]</ul></li>[%/param%]
+					[%/product_filter%]
+					[%product_filter type:'price' limit:'6'%]
+						[%param header%]
+							<li class="list-group-item"><p class="heading4">Price <i class="fa fa-angle-down"></i></p><ul>
+						[%/param%]
+						[%param *body%]
+							[%data id:'selected' if:'==' value:'1'%]
+								[%param *if_true%]
+									<li class="filter-remove  price-range"><a href="[@remove_url@]" class="list-group-item" rel="nofollow">
+										[@name@] <span class="text-muted">([@total@])</span></a>
+									</li>
+								[%/param%]
+								[%param *if_false%]
+									[%data id:'min' if:'=' value:'0'%]
+										[%data id:'max' if:'>' value:'0'%]
+											<li class="filter  price-range"><a class="list-group-item" href="[@url@]">[%format type:'currency' dp:'0'%][@max@][%/format%] or below</a></li>
+										[%/data%]
+									[%/data%]
+									[%data id:'min' if:'>' value:'0'%]
+										[%data id:'max' if:'>' value:'0'%]
+											<li class="filter  price-range"><a class="list-group-item" href="[@url@]">[%format type:'currency' dp:'0'%][@min@][%/format%] to [%format type:'currency' dp:'0'%][@max@][%/format%]</a></li>
+										[%/data%]
+									[%/data%]
+									[%data id:'max' if:'=' value:'0'%]
+										<li class="filter  price-range"><a class="list-group-item" href="[@url@]">[%format type:'currency' dp:'0'%][@min@][%/format%] or above</a></li>
+									[%/data%]
+								[%/param%]
+							[%/data%]
+						[%/param%]
+						[%param footer%]</ul></li>[%/param%]
+					[%/product_filter%]
+					[%product_filter type:'price' limit:'1'%]
+						[%param header%]
+							<li class="list-group-item hidden"><p class="heading4">Price <i class="fa fa-angle-down"></i></p><ul>
+						[%/param%]
+						[%param *body%]
+							[%site_value id:'footer_javascript'%]
+								<script type="text/javascript">
+									$(function() {
+									var vals = ['[@min@]','[@max@]'];
+									for(var i=0; i<vals.length; i++) {vals[i]=parseInt(vals[i]); }
+										$( "#price-range" ).slider({
+											range: true,
+											min: vals[0],
+											max: vals[1],
+											values: vals,
+											slide: function( event, ui ) {
+												$( "#price-range-text" ).html( '[@config:currency_symbol@]'+ui.values[0]+' to [@config:currency_symbol@]'+ui.values[1] );
+												$( '#pricesearch input[name="pr"]' ).val( ui.values[0]+'-'+ui.values[1] );
+											},
+											create: function( event, ui ) {
+												$( "#price-range-text" ).html( '[@config:currency_symbol@]'+vals[0]+' to [@config:currency_symbol@]'+vals[1] );
+												$( '#pricesearch input[name="pr"]' ).val( vals[0]+'-'+vals[1] );
+											}
+										});
+									});
+								</script>
+							[%/site_value%]
+							<li class="list-group-item price-range"><p id="price-range"></p>
+								[%data id:'selected' if:'==' value:'1'%]
+									[%param *if_true%]
+										<p id="price-range-text" class="price_range"></p>
+									[%/param%]
+									[%param *if_false%]
+										<p id="price-range-text" class="price_range"></p>
+									[%/param%]
+								[%/data%]
+								<form id="pricesearch" method="get" action="[@config:current_url@]">
+									<input type="hidden" name="rf" value="[%FILTER_CODE id:'price'%][%/FILTER_CODE%]">
+									<input  name="pr" type="hidden" value="">
+									<input type="submit" value="Filter" class="btn btn-default btn-xs" />
+									<a href="[@remove_url@]" class="btn btn-default btn-xs" rel="nofollow"> Clear</a>
+								</form>
+							</li>
+						[%/param%]
+						[%param footer%]</ul></li>[%/param%]
+					[%/product_filter%]
+				<li><a class="text-clear-all" href="[@url@]" >Clear All Filter</a></li>
+			</ul>
+		</div>
+	[%/if%]
+
+</div>
+<div class="col-xs-12 col-sm-9">

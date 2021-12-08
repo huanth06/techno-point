@@ -1,0 +1,126 @@
+[%site_value id:'footer_javascript'%]
+[%/site_value%]
+</div></div>
+[%advert type:'text' limit:'10' ad_group:'main_carousel'%]
+	[%param *header%]
+	<div class="slideshow">
+		<div class="owl-carousel style-nav" data-lg-items="1" data-md-items="1" data-sm-items="1" data-xs-items="1" data-dot="true" data-nav="true">
+	[%/param%]
+	[%param *body%]
+	<div class="item">
+		<img src="[%asset_url type:'adw' id:'[@ad_id@]'%][%param default%][%cdn_asset html:'0' library:'images'%]default_product.gif[%/cdn_asset%][%end param%][%/asset_url%]" class="d-block w-100" alt="[@headline@]" />
+		<div class="text">
+			<img src="[%ntheme_asset%]img/logo-slideshow1.png[%/ntheme_asset%]" alt="images">
+			<p class="headline">[@headline@]</p>
+			<p class="content">[@description@]</p>
+			<a href="[@url@]" class="btn btn-primary">[@linktext@] <i class="fa fa-angle-right"></i></a>
+			</div>
+	</div>
+	[%/param%]
+	[%param *footer%]
+			</div>
+		</div>
+	[%/param%]
+[%/advert%]
+<div class="container"><div class="row">
+<div class="col-xs-12">
+	<!--Category thumbnails-->
+		[%advert type:'text' limit:'8' ad_group:'home_ad_units'%]
+			[%param *header%]
+			<div class="wrapper-category home-section text-center">
+			[%/param%]
+			[%param *body%]
+				<a href="[@url@]" class="item">
+					<img src="[%asset_url type:'adw' id:'[@ad_id@]'%][%param default%][%cdn_asset html:'0' library:'images'%]default_product.gif[%/cdn_asset%][%end param%][%/asset_url%]" alt="[@headline@]" class="img-responsive" >
+					<h2 class="text">[@headline@] <i class="fa fa-angle-right"></i></h2>
+				</a>
+			[%/param%]
+			[%param *footer%]
+					</div>
+			[%/param%]
+		[%/advert%]
+
+<!-- Most Popular Products -->
+</div>
+</div>
+</div>
+[%advert type:'product' template:'home' ad_group:'best_sellers' limit:'8'%]
+    [%param *header%]
+		<section class="home-bg-gray" aria-label="Popular Products">
+		<div class="container">
+            <div class="text-center mb-3 title-page">
+                <h2>Best Sellers</h2>
+			</div>
+			<div class="owl-carousel" data-lg-items="6" data-md-items="4" data-sm-items="3" data-xs-items="2" data-xss-items="2" data-dot="true" data-nav="true">
+    [%/param%]
+	[%param *footer%]
+			</div>
+		</div>
+        </section>
+    [%/param%]
+[%/advert%]
+ [%advert type:'text' limit:'1' ad_group:'banner_secondary'%]
+	[%param *header%]
+	<div class="section-banner-product">
+		<div class="container">
+			<div class="banner-product">
+	[%/param%]
+	[%param *body%]
+		<div class="text">
+			<!-- <img src="[%asset_url type:'adw' id:'[@ad_id@]'%][%param default%][%cdn_asset html:'0' library:'images'%]default_product.gif[%/cdn_asset%][%end param%][%/asset_url%]" alt="[@headline@]" class="img-responsive" > -->
+			<h3>[@headline@]</h3>
+			<p>[@description@]</p>
+			<a href="[@url@]" title="[@linktext@]">[@linktext@] <i class="fa fa-angle-right"></i></a>
+		</div>
+	[%/param%]
+	[%param *footer%]
+	</div></div></div>
+	[%/param%]
+[%/advert%]
+
+	<!-- New Arrival Products -->
+	[%advert type:'product' template:'home' ad_group:'new_products' limit:'8'%]
+    [%param *header%]
+	<section class="home-bg-gray">
+		<div class="container">
+            <div class="col-12 text-center title-page">
+                <h2 class="mb-0">New Products</h2>
+			</div>
+			<div class="owl-carousel" data-lg-items="6" data-md-items="4" data-sm-items="3" data-xs-items="2" data-xss-items="2" data-dot="true" data-nav="true">
+    [%/param%]
+	[%param *footer%]
+			</div>
+		</div>
+        </section>
+    [%/param%]
+[%/advert%]
+
+<!--Featured brands-->
+
+[%thumb_list type:'content' content_type:'brand' template:'brand-home' limit:'24' sortby:'sortorder-asc'%]
+	[%param *header%]
+	<div class="featured-brands home-section">
+		<div class="container">
+		<div class="category-header text-center title-page">
+			<h2>Shop By Brand</h2>
+		</div>
+		<div class="wrap-flex-brand">
+		<div class="wrap-item-brand">
+	[%/param%]
+	[%param *footer%]
+		</div>
+		<div class="action-bottom">
+			<a class="btn btn-info btn-view-more" href="/brands">View All <i class="fa fa-angle-right " style="font-size: 16px;margin-left: 5px;"></i></a>
+		</div>
+		</div>
+		</div>
+	</div>
+	[%/param%]
+[%/thumb_list%]
+<div class="home-access">
+	<div class="container">
+	   <div class="content">
+			[@page_content@]
+	   </div>
+	</div>
+ </div>

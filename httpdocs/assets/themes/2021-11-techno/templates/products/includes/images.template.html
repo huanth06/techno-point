@@ -1,0 +1,243 @@
+<meta property="og:image" content="[@full_image@]"/>
+
+
+[%set [@img_1@] %][%ASSET_URL type:'inventory' id:'[@inventory_id@]' thumb:'alt_1' /%][%/set%]
+[%set [@img_1_thumb@] %][%ASSET_URL type:'inventory' id:'[@inventory_id@]' thumb:'alt_1_thumb' /%][%/set%]
+[%set [@img_2@] %][%ASSET_URL type:'inventory' id:'[@inventory_id@]' thumb:'alt_2' /%][%/set%]
+[%set [@img_2_thumb@] %][%ASSET_URL type:'inventory' id:'[@inventory_id@]' thumb:'alt_2_thumb' /%][%/set%]
+[%set [@img_3@] %][%ASSET_URL type:'inventory' id:'[@inventory_id@]' thumb:'alt_3' /%][%/set%]
+[%set [@img_4@] %][%ASSET_URL type:'inventory' id:'[@inventory_id@]' thumb:'alt_4' /%][%/set%]
+[%set [@img_5@] %][%ASSET_URL type:'inventory' id:'[@inventory_id@]' thumb:'alt_5' /%][%/set%]
+[%set [@img_6@] %][%ASSET_URL type:'inventory' id:'[@inventory_id@]' thumb:'alt_6' /%][%/set%]
+
+
+<div class="wrap-images-detail">
+
+	<div class="image-navigation">
+		<div class="slick-product-nav">
+			<div class="cts_altImgWrapper" class="item-[@count@]">
+				
+				<picture>
+					<source
+					srcset="[%asset_url type:'product' id:'[@SKU@]' thumb:'thumb' check_parent:'y'/%]"
+					media="(min-width: 768px)" />
+					<img
+					src="[%asset_url type:'product' id:'[@SKU@]' thumb:'thumb' check_parent:'y'/%]"
+					class="lazy img-responsive product-image-small" title="Large View"
+					alt="image with artdirection" />
+				</picture>
+			</div>
+
+
+
+			[% if  [@img_1@] not like '/assets/na.gif' %]
+			<div class="cts_altImgWrapper">
+				<picture>
+					<source
+					srcset="[@img_1_thumb@]"
+					media="(min-width: 768px)" />
+					<img
+					src="[@img_1_thumb@]"
+					class="lazy img-responsive product-image-small" title="Large View"
+					alt="image with artdirection" />
+				</picture>
+			</div>
+			[%/ if%]
+
+			[% if  [@img_2@] not like '/assets/na.gif' %]
+			<div class="cts_altImgWrapper">
+				<picture>
+					<source
+					srcset="[@img_2_thumb@]"
+					media="(min-width: 768px)" />
+					<img
+					src="[@img_2_thumb@]"
+					class="lazy img-responsive product-image-small" title="Large View"
+					alt="image with artdirection" />
+				</picture>
+			</div>
+			[%/ if%]
+
+
+			[% if  [@img_3@] not like '/assets/na.gif' %]
+			<div class="cts_altImgWrapper">
+				<picture>
+					<source
+					srcset="[@img_3@]"
+					media="(min-width: 768px)" />
+					<img
+					src="[@img_3@]"
+					class="lazy img-responsive product-image-small" title="Large View"
+					alt="image with artdirection" />
+				</picture>
+			</div>
+			[%/ if%]
+
+
+			[% if  [@img_4@] not like '/assets/na.gif' %]
+			<div class="cts_altImgWrapper">
+				<picture>
+					<source
+					srcset="[@img_4@]"
+					media="(min-width: 768px)" />
+					<img
+					src="[@img_4@]"
+					class="lazy img-responsive product-image-small" title="Large View"
+					alt="image with artdirection" />
+				</picture>
+			</div>
+			[%/ if%]
+
+			[% if  [@img_5@] not like '/assets/na.gif' %]
+			<div class="cts_altImgWrapper">
+				<picture>
+					<source
+					srcset="[@img_5@]"
+					media="(min-width: 768px)" />
+					<img
+					src="[@img_5@]"
+					class="lazy img-responsive product-image-small" title="Large View"
+					alt="image with artdirection" />
+				</picture>
+			</div>
+			[%/ if%]
+
+			[% if  [@img_6@] not like '/assets/na.gif' %]
+			<div class="cts_altImgWrapper">
+				<picture>
+					<source
+					srcset="[@img_6@]"
+					media="(min-width: 768px)" />
+					<img
+					src="[@img_6@]"
+					class="lazy img-responsive product-image-small" title="Large View"
+					alt="image with artdirection" />
+				</picture>
+			</div>
+			[%/ if%]
+
+		</div>
+	</div>
+	
+	<div class="main-images-left">
+		<div class="text-center slick-main-img">
+			<a href="[%asset_url type:'product' id:'[@SKU@]' thumb:'full' check_parent:'y'%][%END asset_url%]" data-fancybox="gallery" rel="product_images">
+
+				<picture>
+					<source
+					srcset="[%asset_url type:'product' id:'[@SKU@]' thumb:'full' check_parent:'y'/%]"
+					media="(min-width: 768px)" />
+					<img
+					src="[%asset_url type:'product' id:'[@SKU@]' thumb:'full' check_parent:'y'/%]"
+					class="img-responsive product-image-small lazy" title="Large View"
+					alt="image with artdirection" />
+				</picture>
+
+			</a>
+		
+
+			[% if  [@img_1@] not like '/assets/na.gif' %]
+			<a href="[@img_1@]" data-fancybox="gallery"  class="main-img-item" rel="product_images">
+				<picture>
+					<source
+					srcset="[@img_1@]"
+					media="(min-width: 768px)" />
+					<img
+					src="[@img_1@]"
+					class="lazy img-responsive product-image-small" title="Large View"
+					alt="image with artdirection" />
+				</picture>
+			</a>
+			[%/ if%]
+
+
+			[% if  [@img_2@] not like '/assets/na.gif' %]
+			<a href="[@img_2@]" data-fancybox="gallery"  class="main-img-item" rel="product_images">
+				<picture>
+					<source
+					srcset="[@img_2@]"
+					media="(min-width: 768px)" />
+					<img
+					src="[@img_2@]"
+					class="lazy img-responsive product-image-small" title="Large View"
+					alt="image with artdirection" />
+				</picture>
+			</a>
+			[%/ if%]
+
+
+			[% if  [@img_3@] not like '/assets/na.gif' %]
+			<a href="[@img_3@]" data-fancybox="gallery"  class="main-img-item" rel="product_images">
+				<picture>
+					<source
+					srcset="[@img_3@]"
+					media="(min-width: 768px)" />
+					<img
+					src="[@img_3@]"
+					class="lazy img-responsive product-image-small" title="Large View"
+					alt="image with artdirection" />
+				</picture>
+			</a>
+			[%/ if%]
+
+			[% if  [@img_4@] not like '/assets/na.gif' %]
+			<a href="[@img_4@]" data-fancybox="gallery" class="main-img-item" rel="product_images">
+				<picture>
+					<source
+					srcset="[@img_4@]"
+					media="(min-width: 768px)" />
+					<img
+					src="[@img_4@]"
+					class="lazy img-responsive product-image-small" title="Large View"
+					alt="image with artdirection" />
+				</picture>
+			</a>
+			[%/ if%]
+
+			[% if  [@img_5@] not like '/assets/na.gif' %]
+			<a href="[@img_5@]" data-fancybox="gallery" class="main-img-item" rel="product_images">
+				<picture>
+					<source
+					srcset="[@img_5@]"
+					media="(min-width: 768px)" />
+					<img
+					src="[@img_5@]"
+					class="lazy img-responsive product-image-small" title="Large View"
+					alt="image with artdirection" />
+				</picture>
+			</a>
+			[%/ if%]
+
+
+			[% if  [@img_6@] not like '/assets/na.gif' %]
+			<a href="[@img_6@]" data-fancybox="gallery"  class="main-img-item" rel="product_images">
+				<picture>
+					<source
+					srcset="[@img_6@]"
+					media="(min-width: 768px)" />
+					<img
+					src="[@img_6@]"
+					class="lazy img-responsive product-image-small" title="Large View"
+					alt="image with artdirection" />
+				</picture>
+			</a>
+			[%/ if%]
+		</div>
+
+	</div>
+</div>
+
+
+
+
+
+
+[%set [@img_mb_7@] %][%ASSET_URL type:'inventory' id:'[@inventory_id@]' thumb:'alt_7' /%][%/set%]
+[%set [@img_mb_8@] %][%ASSET_URL type:'inventory' id:'[@inventory_id@]' thumb:'alt_8' /%][%/set%]
+[%set [@img_mb_9@] %][%ASSET_URL type:'inventory' id:'[@inventory_id@]' thumb:'alt_9' /%][%/set%]
+[%set [@img_mb_10@] %][%ASSET_URL type:'inventory' id:'[@inventory_id@]' thumb:'alt_10' /%][%/set%]
+[%set [@img_mb_11@] %][%ASSET_URL type:'inventory' id:'[@inventory_id@]' thumb:'alt_11' /%][%/set%]
+[%set [@img_mb_12@] %][%ASSET_URL type:'inventory' id:'[@inventory_id@]' thumb:'alt_12' /%][%/set%]
+[%set [@img_mb_13@] %][%ASSET_URL type:'inventory' id:'[@inventory_id@]' thumb:'alt_13' /%][%/set%]
+[%set [@img_mb_14@] %][%ASSET_URL type:'inventory' id:'[@inventory_id@]' thumb:'alt_14' /%][%/set%]
+

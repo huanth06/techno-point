@@ -1,0 +1,47 @@
+<div class="tile" itemtype="http://schema.org/Article">
+	<span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+		<meta itemprop="url" content="[@config:homeurl@]"/>
+		<span itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
+			<meta itemprop="url" content="[@config:homeurl@][@config:imageurl@]/website_logo.png">
+		</span>
+		<meta itemprop="name" content="[@config:company_name@]"/>
+	</span>
+	<div class="blog-thumbnails">
+		[%set [@content-img@]%][%asset_url type:'content' thumb:'alt_1' id:'[@content_id@]' default:'[$imageurl$]/pixel.gif'/%][%/set%]
+		[%if [@content-img@] like '/assets/pixel.gif'%]
+		[%else%]
+		<div class="blog-thumbnail-img">
+			<a href="[@URL@]" itemprop="url"><img class="card-img-top img-responsive" src="[@content-img@]"></a>
+		</div>
+		[%/if%]
+		<div class="card-block">
+			<h4 class="card-title"><a href="[@URL@]" itemprop="url">[@content_name@]</a></h4>
+			<p>
+				<small class="text-muted">
+					[%if [@content_author@]%]
+					[@content_author@] &nbsp;
+					[%/IF%]
+					[%if [@date_posted@] != 0000-00-00 00:00:00%]
+					>&nbsp;
+					[%format type:'date'%][@date_posted@][%/format%]
+					[%/if%]
+				</small>
+				[@content_short_description2@]
+			</p>
+			<p>
+				[%if [@content_allow_reviews@] and [@reviews@] > 0%]<a href="[@URL@]#comments">Comment</a> <span class="text-muted">([@reviews@])</span>[%/IF%]
+				<div class="social-media-share">
+					<ul>
+						<li role="presentation"><a class="js-social-share" role="menuitem" tabindex="-1" href="//www.facebook.com/sharer/sharer.php?u=[%url_encode%][@url@][%/url_encode%]"><i class="fa fa-facebook-square text-facebook"></i></a></li>
+						<li role="presentation"><a class="js-social-share" role="menuitem" tabindex="-1" href="//twitter.com/intent/tweet/?text=[%url_encode%][@content_name@][%/url_encode%]&amp;url=[%url_encode%][@url@][%/url_encode%]"><i class="fa fa-twitter-square text-twitter"></i></a></li>
+						<li role="presentation"><a class="js-social-share" role="menuitem" tabindex="-1" href="//www.pinterest.com/pin/create/button/?url=[%url_encode%][@url@][%/url_encode%]&amp;description=[%url_encode%][@content_name@][%/url_encode%]"><i class="fa fa-pinterest-square text-pinterest"></i></a></li>
+						<li role="presentation"><a class="js-social-share" role="menuitem" tabindex="-1" href="//plus.google.com/share?url=[%url_encode%][@url@][%/url_encode%]"><i class="fa fa-google-plus-square text-google-plus"></i></a></li>
+						<li role="presentation"><a class="js-social-share" role="menuitem" tabindex="-1" href="mailto:?subject=[%url_encode%]Take a look at this article: [@content_name@][%/url_encode%] &body=[%url_encode%][@url@][%/url_encode%]"><i class="fa fa-envelope-square text-email"></i></a></li>
+					</ul>
+				</div>
+			</p>
+			<p class="card-text">[%format type:'text' maxlength:'200' rmhtml:'1'%][@content_description1@][%/format%]...</p>
+			<a href="[@URL@]" class="btn btn-info" itemprop="url">Read more</a>
+		</div>
+	</div>
+</div>

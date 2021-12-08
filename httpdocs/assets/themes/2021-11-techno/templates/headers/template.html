@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="keywords" content="[%url_info name:'meta_keywords'/%]"/>
+<meta name="description" content="[%url_info name:'meta_description'/%]"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0"/>
+<meta property="og:image" content="[%if [@config:current_page_type@] eq 'product'%][@config:homeurl@][%asset_url type:'product' id:'[@SKU@]' thumb:'full'/%][%ELSEIF [@config:current_page_type@] eq 'content'%][@config:homeurl@][%ASSET_url type:'content' id:'[@content_id@]' default:'/assets/website_logo.png'%][%/ASSET_url%][%ELSE%][@config:homeurl@]/assets/website_logo.png[%/if%]"/>
+<meta property="og:title" content="[%url_info name:'page_title'/%]"/>
+<meta property="og:site_name" content="[@config:website_name@]"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="[@config:canonical_url@]"/>
+<meta property="og:description" content="[%url_info name:'meta_description'/%]"/>
+[@config:GOOGLE_VERIFICATION_CODE@]
+<title>[%url_info name:'page_title'/%]</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Titillium+Web:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
+<link rel="canonical" href="[@config:canonical_url@]"/>
+<link rel="shortcut icon" href="[@config:secure_home_url@]/assets/favicon_logo.png"/>
+<link rel="stylesheet" type="text/css" href="[%ntheme_asset%]js/plugins/slick-1.5.9/slick/slick.css[%end ntheme_asset%]"/>
+<link rel="stylesheet" type="text/css" href="[%ntheme_asset%]js/plugins/slick-1.5.9/slick/slick-theme.css[%end ntheme_asset%]"/>
+<link class="theme-selector" rel="stylesheet" type="text/css" href="[%ntheme_asset%]css/app.css[%/ntheme_asset%]" media="all"/>
+<link rel="stylesheet" type="text/css" href="[%ntheme_asset%]css/style.css[%/ntheme_asset%]" media="all"/>
+<link rel="stylesheet" type="text/css" href="[%ntheme_asset%]css/owl.carousel.min.css[%/ntheme_asset%]" media="all"/>
+<link rel="stylesheet" type="text/css" href="[%ntheme_asset%]css/h_custom.css[%/ntheme_asset%]" media="all"/>
+[%cdn_asset html:'1' type:'css' domain:'maxcdn.bootstrapcdn.com' library:'font-awesome' version:'4.5.0'%]css/font-awesome.min.css[%/cdn_asset%]
+[%cdn_asset html:'1' type:'css' library:'jquery_ui' version:'1.11.1'%]css/custom-theme/jquery-ui-1.8.18.custom.css[%/cdn_asset%]
+[%cdn_asset html:'1' type:'css' library:'fancybox' version:'2.1.5'%]jquery.fancybox.css[%/cdn_asset%]
+<!--[if lte IE 8]>
+	[%cdn_asset html:'1' type:'js' library:'html5shiv' version:'3.7.0'%]html5shiv.js[%/cdn_asset%]
+	[%cdn_asset html:'1' type:'js' library:'respond.js' version:'1.3.0'%]respond.min.js[%/cdn_asset%]
+<![endif]-->
+[%tracking_code type:'Declaration'/%]
+</head>
+<body id="n_[@config:current_page_type@]" class="n_[@CONFIG:TEMPLATELANG@]">
+<div class="wrapper-page">	
+<div class="topbar">
+	<div class="container">
+		[%advert type:'text' limit:'8' ad_group:'announcement' category: '0'%]
+			[%param *header%]
+			<div class="d-flex">
+			[%/param%]
+			[%param *body%]
+				[@description@]<a href="[@url@]" class="item">[@linktext@] <i class="fa fa-angle-right"></i></a>
+			[%/param%]
+			[%param *footer%]
+					</div>
+			[%/param%]
+		[%/advert%]
+	</div>
+</div>
+
+[%set [@site_menu@] %][%content_zone id:'site_menu'/%][%/set%]
+
+
+<div class="wrapper-header">
+	<div class="container">
+		<div class="d-flex">
+			<div class="wrapper-logo">
+				<div class="click-shop-all visible-xs">
+					<i class="fa fa-bars"></i>
+				 </div>
+				<a href="[@config:homeurl@]" title="[@config:company_name@]">
+					<img class="logo" src="[@config:imageurl@]/website_logo.png" alt="[@config:company_name@]"/>
+				</a>
+			</div>
+
+			<div class="wrap-search">
+				<form name="productsearch" method="get" action="/">
+					<input type="hidden" name="rf" value="kw"/>
+					<div class="input-group">
+						<input class="form-control ajax_search" placeholder="What are you looking for?" value="[%nohtml%][%filter ID:'keywords'%][%/filter%][%/nohtml%]" id="name_search" autocomplete="off" name="kw" type="text"/>
+						<span class="input-group-btn">
+							<button type="submit" value="Search" class="btn"><img src="[%ntheme_asset%]img/ic-search.svg[%/ntheme_asset%]" alt="search"></button>
+						</span>
+					</div>
+				</form>
+			</div>
+
+			<div class="box-text-right">
+				<div class="box-link">
+				   <a href="[%url page:'account'/%]" title="Account">
+					  <img src="[%ntheme_asset%]img/ic-user.svg[%/ntheme_asset%]" alt="icon account">
+				   </a>
+				</div> 
+				 <div class="box-link">
+					<a href="[%url page:'account' type:'wishlist'/%]" title="Wishlist">
+					   <img src="[%ntheme_asset%]img/ic-wishlist.svg[%/ntheme_asset%]" alt="icon wishlist">
+					</a>
+				 </div>
+				<div id="header-cart" class="btn-group">
+					<a href="#" class="shopping-bag-icon dropdown-toggle" id="cartcontentsheader" data-toggle="dropdown" >
+						<img src="[%ntheme_asset%]img/ic-cart.svg[%/ntheme_asset%]" alt="cart">
+					</a>
+					<a href="#" class="cart-count dropdown-toggle" data-toggle="dropdown"><span rel="a2c_item_count">[%format type:'number' dp:'0'%][%cart id:'total_items'/%][%/format%]</span></a>
+					[%if [@form:npurpose@] ne 'facebook'%]
+					<ul class="dropdown-menu">
+						<li class="box" id="neto-dropdown">
+							<div class="body padding" id="cartcontents"></div>
+							<div class="footer"></div>
+						</li>
+					</ul>
+					[%/ if%]
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+<div class="wrap-menu-product-all">
+	<div class="head-menu">
+		<span class="icon"><img src="[%ntheme_asset%]img/icon-account.svg[%/ntheme_asset%]" alt="icon"></span>
+		<p>
+			[%if [@user:username@] ne 'noreg'%]
+			<a href="[%url page:'account'/%]">Account</a> / <a href="[%url page:'account' type:'logout'/%]">Log Out</a>
+			[%else%]
+			Welcome, <a href="[%url page:'account' type:'login'/%]">Login / Register</a>
+			[%/if%]
+		</p>  
+	</div>
+	<ul>
+		[%cache type:'menu' id:'header-category-menu'%]
+			[%content_menu content_type:'category' sortby:'sortorder' show_empty:'1'%]
+				[%param *level_1%]
+				<li>
+					<a href="[@url@]">[@name@]</a>
+					[%if [@next_level@]%]
+					<ul>
+						[@next_level@]
+						<li><a href="[@url@]">View [@name@]</a></li>
+					</ul>
+					[%/if%]
+				</li>
+				[%/param%]
+				[%param *level_2%]
+				<li>
+					<a href="[@url@]">[@name@]</a>
+					[%if [@next_level@]%]
+					<ul>
+						[@next_level@]
+						<li><a href="[@url@]">View [@name@]</a></li>
+					</ul>
+					[%/if%]
+				</li>
+				[%/param%]
+				[%param *level_3%]
+				<li>
+					<a href="[@url@]">[@name@]</a>
+					[%if [@next_level@]%]
+					<ul>
+						[@next_level@]
+						<li><a href="[@url@]">View [@name@]</a></li>
+					</ul>
+					[%/if%]
+				</li>
+				[%/param%]
+			[%/content_menu%]
+		[%/cache%]
+	</ul>
+</div>
+<div class="wrapper-nav">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 text-center">
+				<div class="full-menu-wrapper">
+					<ul class="nav center-nav navbar-nav hidden-xs">
+						<li><a class="click-shop-all"><i class="fa fa-bars"></i> Shop all products</a></li>
+						[%cache type:'menu' id:'header-menu-nav'%]
+                        [%content_menu content_type:'category' sortby:'sortorder' show_empty:'1'%]
+                        [%param *level_1%]
+                        <li class="[%if [@next_level@]%]dropdown dropdown-hover[%/if%]"> <a href="[@url@]" [%if [@next_level@]%]class="dropdown-toggle"[%/if%]>[@name@]</a>
+                            [%if [@next_level@]%]
+                            <div class="dropdown-menu">
+								<div class="mega-menu-left">
+									<ul>
+                                	[@next_level@]
+									</ul>
+								</div>
+								[%random_products category:'[@id@]' template:'' limit:'5'%]
+								[%param *header%]
+								<div class="mega-menu-right">
+									<div class="owl-carousel" data-lg-items="1" data-md-items="1" data-sm-items="1" data-xs-items="1" data-nav="true">
+									[%/param%]
+									[%param *footer%]
+									</div>
+								</div>
+								[%/param%]
+								[%/random_products%]
+                            </div>
+                            [%/if%]
+                        </li>
+                        [%/param%]
+                        [%param *level_2%]
+                        <li class="[%if [@next_level@]%]dropdown dropdown-hover[%/if%]"> <a href="[@url@]" class="nuhover dropdown-toggle">[@name@]</a>
+                            [%if [@next_level@]%]
+                            <ul class="dropdown-menu dropdown-menu-horizontal">
+                                [@next_level@]
+                            </ul>
+                            [%/if%]
+                        </li>
+                        [%/param%]
+                        [%param *level_3%]
+                        <li class="[%if [@next_level@]%]dropdown dropdown-hover[%/if%]"> <a href="[@url@]">[@name@]</a>
+                            [%if [@next_level@]%]
+                            <ul class="dropdown-menu dropdown-menu-horizontal">
+                                [@next_level@]
+                            </ul>
+                            [%/if%]
+                        </li>
+                        [%/param%]
+                        [%/content_menu%]
+                        [%/ cache%]
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div id="main-content" class="container" role="main">
+	<div class="row">

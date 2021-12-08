@@ -1,0 +1,14 @@
+type
+website
+----------
+name
+Rightside
+----------
+version
+5
+----------
+install_description
+
+----------
+description
+<h1>Rightside</h1>
