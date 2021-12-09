@@ -324,7 +324,9 @@ h3.title-page,h3.subheading{
 	margin-left: 5px;
 }
 .banner-product{
-	background: url(../img/banner-product.jpg)no-repeat scroll center;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-attachment: scroll;
 	background-size: cover;
 	height: 280px;
 	padding: 50px 70px;
@@ -533,6 +535,9 @@ body{
 			}
 			.shopping-bag-icon {
 				position: static;
+			}
+			.btn-group.open .dropdown-toggle{
+				box-shadow: none;
 			}
 		}
 	}
