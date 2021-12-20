@@ -3,14 +3,15 @@
 </div></div>
 [%advert type:'text' limit:'10' ad_group:'main_carousel'%]
 	[%param *header%]
-	<div class="slideshow">
+	<div class="slideshow slideshow-owl">
 		<div class="owl-carousel style-nav" data-lg-items="1" data-md-items="1" data-sm-items="1" data-xs-items="1" data-dot="true" data-nav="true">
 	[%/param%]
 	[%param *body%]
 	<div class="item">
-		<img src="[%asset_url type:'adw' id:'[@ad_id@]'%][%param default%][%cdn_asset html:'0' library:'images'%]default_product.gif[%/cdn_asset%][%end param%][%/asset_url%]" class="d-block w-100" alt="[@headline@]" />
+		<a href="[@url@]">
+			<img src="[%asset_url type:'adw' id:'[@ad_id@]'%][%param default%][%cdn_asset html:'0' library:'images'%]default_product.gif[%/cdn_asset%][%end param%][%/asset_url%]" class="d-block w-100" alt="[@headline@]" />
+		</a>
 		<div class="text">
-			<img src="[%ntheme_asset%]img/logo-slideshow1.png[%/ntheme_asset%]" alt="images">
 			<p class="headline">[@headline@]</p>
 			<p class="content">[@description@]</p>
 			<a href="[@url@]" class="btn btn-primary">[@linktext@] <i class="fa fa-angle-right"></i></a>
@@ -59,42 +60,68 @@
         </section>
     [%/param%]
 [%/advert%]
- [%advert type:'text' limit:'1' ad_group:'banner_secondary'%]
+[%advert type:'text' limit:'10' ad_group:'main_carousel'%]
 	[%param *header%]
-	<div class="section-banner-product">
-		<div class="container">
+	<div class="slideshow slideshow-owl">
+		<div class="owl-carousel style-nav" data-lg-items="1" data-md-items="1" data-sm-items="1" data-xs-items="1" data-dot="true" data-nav="true">
 	[%/param%]
 	[%param *body%]
-		<div class="banner-product" style="background-image: url([%asset_url type:'adw' id:'[@ad_id@]'%][%param default%][%cdn_asset html:'0' library:'images'%][%/cdn_asset%][%end param%][%/asset_url%]);">
-			<div class="text">
-				<h3>[@headline@]</h3>
-				<p>[@description@]</p>
-				<a href="[@url@]" title="[@linktext@]">[@linktext@] <i class="fa fa-angle-right"></i></a>
+	<div class="item">
+		<a href="[@url@]">
+			<img src="[%asset_url type:'adw' id:'[@ad_id@]'%][%param default%][%cdn_asset html:'0' library:'images'%]default_product.gif[%/cdn_asset%][%end param%][%/asset_url%]" class="d-block w-100" alt="[@headline@]" />
+		</a>
+		<div class="text">
+			<p class="headline">[@headline@]</p>
+			<p class="content">[@description@]</p>
+			<a href="[@url@]" class="btn btn-primary">[@linktext@] <i class="fa fa-angle-right"></i></a>
+			</div>
+	</div>
+	[%/param%]
+	[%param *footer%]
 			</div>
 		</div>
 	[%/param%]
+[%/advert%]
+ [%advert type:'text' limit:'6' ad_group:'banner_secondary'%]
+	[%param *header%]
+	<div class="section-banner-product slideshow-owl">
+		<div class="container">
+			<div class="owl-carousel style-nav" data-lg-items="1" data-md-items="1" data-sm-items="1" data-xs-items="1" data-dot="true" data-nav="true">
+	[%/param%]
+	[%param *body%]
+				<div data-url="[@url@]" class="banner-product" style="background-image: url([%asset_url type:'adw' id:'[@ad_id@]'%][%param default%][%cdn_asset html:'0' library:'images'%][%/cdn_asset%][%end param%][%/asset_url%]);">
+					<div class="text">
+						<h3>[@headline@]</h3>
+						<p>[@description@]</p>
+						<a href="[@url@]" title="[@linktext@]">[@linktext@] <i class="fa fa-angle-right"></i></a>
+					</div>
+				</div>
+	[%/param%]
 	[%param *footer%]
-	</div></div>
+			</div>
+		</div>
+	</div>
 	[%/param%]
 [%/advert%]
 
-	<!-- New Arrival Products -->
-	[%advert type:'product' template:'home' ad_group:'new_products' limit:'8'%]
+<!-- New Arrival Products -->
+[%new_arrivals template:'home' limit:'12'%]
     [%param *header%]
-	<section class="home-bg-gray">
-		<div class="container">
-            <div class="col-12 text-center title-page">
-                <h2 class="mb-0">New Products</h2>
-			</div>
-			<div class="owl-carousel" data-lg-items="6" data-md-items="4" data-sm-items="3" data-xs-items="2" data-xss-items="2" data-dot="true" data-nav="true">
+        <section class="home-bg-gray">
+			<div class="container">
+	            <div class="col-12 text-center title-page">
+	                <h2 class="mb-0">New Products</h2>
+				</div>
+				<div class="owl-carousel" data-lg-items="6" data-md-items="4" data-sm-items="3" data-xs-items="2" data-xss-items="2" data-dot="true" data-nav="true">
     [%/param%]
-	[%param *footer%]
+    [%param *footer%]
+    			</div>
 			</div>
-		</div>
         </section>
     [%/param%]
-[%/advert%]
-
+    [%param *ifempty%]
+    [%/param%]
+[%/new_arrivals%]
 <!--Featured brands-->
 [%thumb_list type:'content' content_type:'brand' template:'brand-home' limit:'24' sortby:'sortorder-desc'%]
 	[%param *header%]

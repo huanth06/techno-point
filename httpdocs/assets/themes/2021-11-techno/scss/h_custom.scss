@@ -361,6 +361,9 @@ h3.title-page,h3.subheading{
 			background: #00A2A1;
 		}
 	}
+	&:hover{
+		cursor: pointer;
+	}
 }
 body{
 	>.wrapper-page{
@@ -2097,6 +2100,16 @@ h1.page-header{
 				background: #00a2a1;
 				border-color: #00a2a1;
 			}
+		}
+	}
+}
+.slideshow-owl{
+	.owl-nav{
+		opacity: 0;
+	}
+	&:hover{
+		.owl-nav{
+			opacity: 1;
 		}
 	}
 }

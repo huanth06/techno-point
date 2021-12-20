@@ -399,6 +399,9 @@ h3.title-page, h3.subheading {
   text-decoration: none;
   background: #00A2A1;
 }
+.banner-product:hover {
+  cursor: pointer;
+}
 
 body > .wrapper-page {
   transition: all 0.3s ease 0s;
@@ -2153,6 +2156,13 @@ h1.page-header {
   outline: none;
   background: #00a2a1;
   border-color: #00a2a1;
+}
+
+.slideshow-owl .owl-nav {
+  opacity: 0;
+}
+.slideshow-owl:hover .owl-nav {
+  opacity: 1;
 }
 
 .breadcrumb a:after {

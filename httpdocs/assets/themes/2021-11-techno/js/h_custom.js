@@ -521,3 +521,9 @@ function awe_owl() {
         }
     });
 })();
+
+(function(){
+   $('.banner-product').click(function(){
+        window.location.href = $(this).attr("data-url");
+    });
+})();
