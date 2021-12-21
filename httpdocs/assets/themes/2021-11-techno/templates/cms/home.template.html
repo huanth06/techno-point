@@ -105,7 +105,7 @@
 [%/advert%]
 
 <!-- New Arrival Products -->
-[%new_arrivals template:'home' limit:'12'%]
+[%advert type:'product' template:'home' ad_group:'new_products' limit:'8'%]
     [%param *header%]
         <section class="home-bg-gray">
 			<div class="container">
@@ -119,9 +119,7 @@
 			</div>
         </section>
     [%/param%]
-    [%param *ifempty%]
-    [%/param%]
-[%/new_arrivals%]
+[%/advert%]
 <!--Featured brands-->
 [%thumb_list type:'content' content_type:'brand' template:'brand-home' limit:'24' sortby:'sortorder-desc'%]
 	[%param *header%]
